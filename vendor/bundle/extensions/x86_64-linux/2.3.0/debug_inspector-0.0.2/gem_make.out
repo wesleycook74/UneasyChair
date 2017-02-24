@@ -1,0 +1,15 @@
+current directory: /home/salt-mint/workspace/group/vendor/bundle/gems/debug_inspector-0.0.2/ext/debug_inspector
+/usr/bin/ruby2.3 -r ./siteconf20170224-5211-1bk1p5f.rb extconf.rb
+creating Makefile
+
+current directory: /home/salt-mint/workspace/group/vendor/bundle/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /home/salt-mint/workspace/group/vendor/bundle/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.so
+
+current directory: /home/salt-mint/workspace/group/vendor/bundle/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.so ./.gem.20170224-5211-bqmvao
