@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170224185203) do
 
   create_table "reviews", force: :cascade do |t|
@@ -18,6 +19,15 @@ ActiveRecord::Schema.define(version: 20170224185203) do
     t.string   "reviewer"
     t.string   "rebuttal"
     t.integer  "confidence"
+  end
+
+
+create_table "papers", force: :cascade do |t|
+    t.string   "doc_url"
+    t.string   "author"
+    t.string   "track"
+    t.boolean  "accepted"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

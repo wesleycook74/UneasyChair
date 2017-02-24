@@ -1,0 +1,8 @@
+Rails.application.routes.draw do
+<<<<<<< HEAD
+  resources :reviews
+=======
+  resources :papers
+>>>>>>> 3bd34d1f06d5ed370a8f37efc1fd501fc019c671
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end

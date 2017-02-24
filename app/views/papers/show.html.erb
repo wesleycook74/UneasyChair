@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Doc url:</strong>
+  <%= @paper.doc_url %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @paper.author %>
+</p>
+
+<p>
+  <strong>Track:</strong>
+  <%= @paper.track %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @paper.accepted %>
+</p>
+
+<%= link_to 'Edit', edit_paper_path(@paper) %> |
+<%= link_to 'Back', papers_path %>
