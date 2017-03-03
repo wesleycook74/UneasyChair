@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :conferences
   resources :reviews
 
   resources :papers
