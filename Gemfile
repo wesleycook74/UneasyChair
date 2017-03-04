@@ -25,6 +25,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'react_on_rails', '~>6'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# devise for user creation and authorization
+gem 'devise'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
