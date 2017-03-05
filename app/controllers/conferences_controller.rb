@@ -10,6 +10,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+    @tracks = @conference.tracks
   end
 
   # GET /conferences/new
