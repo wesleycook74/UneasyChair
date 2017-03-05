@@ -27,6 +27,8 @@ gem 'react_on_rails', '~>6'
 gem 'jquery-rails'
 # devise for user creation and authorization
 gem 'devise'
+# bootstrap to prettify things
+gem 'bootstrap-sass'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
