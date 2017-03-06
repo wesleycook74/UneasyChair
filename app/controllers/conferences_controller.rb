@@ -10,6 +10,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+    @tracks = @conference.tracks
   end
 
   # GET /conferences/new
@@ -69,6 +70,6 @@ class ConferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conference_params
-      params.fetch(:conference, {})
+      params.require(:conference).permit(:name, :acronym)
     end
 end

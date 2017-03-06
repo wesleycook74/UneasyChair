@@ -24,8 +24,9 @@ class TracksController < ApplicationController
   # POST /tracks
   # POST /tracks.json
   def create
-    @track = Track.new(track_params)
-
+    # @track = Track.new(track_params)
+    @conference = Conference.find(params[:conference_id])
+    @track = @conference.tracks.build()
     respond_to do |format|
       if @track.save
         format.html { redirect_to @track, notice: 'Track was successfully created.' }
