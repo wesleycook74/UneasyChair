@@ -1,12 +1,23 @@
-<p>
-  <strong>Name:</strong>
-  <%= @conference.name %>
-</p>
+<div class="container">
+  <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+              <h1><%= @conference.name %></h1> 
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 col-md-offset-5">
+            <h4><%= @conference.acronym %></h4> 
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+  
 
-<p>
-  <strong>Acronym:</strong>
-  <%= @conference.acronym %>
-</p>
+</div>
+
+
 
 <H1>Tracks</H1>
 <table>
@@ -19,8 +30,8 @@
                 </dl>
             </td>
             <td class="list_actions">
-                <%= link_to 'Show', track %><br/>
-                <%= link_to 'Edit', edit_track_path(track) %><br/>
+                <%= link_to 'View', track %> | 
+                <%= link_to 'Edit', edit_track_path(track) %> | 
                 <%= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
         </tr>

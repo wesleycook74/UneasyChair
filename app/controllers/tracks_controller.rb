@@ -16,7 +16,7 @@ class TracksController < ApplicationController
   # GET /tracks/new
   def new
     @track = Track.new
-    
+    @conference = Conference.find(params[:conference_id])
   end
 
   # GET /tracks/1/edit
