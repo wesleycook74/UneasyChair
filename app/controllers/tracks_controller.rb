@@ -15,6 +15,7 @@ class TracksController < ApplicationController
   # GET /tracks/new
   def new
     @track = Track.new
+    
   end
 
   # GET /tracks/1/edit
@@ -27,6 +28,7 @@ class TracksController < ApplicationController
     # @track = Track.new(track_params)
     @conference = Conference.find(params[:conference_id])
     @track = @conference.tracks.build()
+    
     respond_to do |format|
       if @track.save
         format.html { redirect_to @track, notice: 'Track was successfully created.' }
@@ -70,6 +72,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:name, :acronym)
+      params.require(:track).permit(:name, :acronym, :conference_id)
     end
 end
