@@ -8,5 +8,25 @@
   <%= @track.acronym %>
 </p>
 
+<H1>Users</H1>
+<table>
+    <% @users.each do |user| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <td class="list_description">
+                <dl>
+                    <dt><%= user.name %></dt>
+                    <dd></dd>
+                </dl>
+            </td>
+            <td class="list_actions">
+                <%= link_to 'View', user %> | 
+                <%= link_to 'Edit', edit_user_path(user) %> | 
+                <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        </tr>
+    <% end %>
+</table>
+
+<%= link_to 'Add User' %> |
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', @conference %>

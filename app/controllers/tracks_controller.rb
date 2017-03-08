@@ -7,10 +7,15 @@ class TracksController < ApplicationController
     @tracks = Track.all
   end
 
+  def add_user
+    
+  end
+
   # GET /tracks/1
   # GET /tracks/1.json
   def show
     @conference = @track.conference
+    @users = @track.users
   end
 
   # GET /tracks/new

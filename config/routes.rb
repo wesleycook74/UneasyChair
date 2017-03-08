@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :conferences
   resources :reviews
 
+  resources :tracks do
+    member do
+      get 'add_user'
+    end
+  end
+
   resources :papers
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
