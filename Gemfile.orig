@@ -6,18 +6,16 @@ git_source(:github) do |repo_name|
 end
 
 <<<<<<< HEAD
-
-
-=======
 gem 'faker'
+=======
 
-gem 'carrierwave'
->>>>>>> add_users_to_tracks
 
-gem 'bootstrap-sass' #Bootstrap for CSS and JavaScript
+
+>>>>>>> d23d1bb49ef54f3a57a8e0e048a88e9e1e6df1d5
+
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
-
+gem 'fog-aws'
 gem 'aws-sdk', '~> 2'
 
 

@@ -7,8 +7,9 @@ end
 
 gem 'faker'
 
-gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 
+gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
+gem 'fog-aws'
 gem 'aws-sdk', '~> 2'
 
 
