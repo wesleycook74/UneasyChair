@@ -9,8 +9,8 @@
 conference1 = Conference.create(name: 'ACM Conference1', acronym: 'ACM1')
 conference2 = Conference.create(name: 'ACM Conference2', acronym: 'ACM2')
 
-conference1.tracks.build(name:'Operating Systems', acronym: 'OS')
-conference1.tracks.build(name:'Algorithms', acronym: 'AG')
+track1 = conference1.tracks.build(name:'Operating Systems', acronym: 'OS')
+track2 = conference1.tracks.build(name:'Algorithms', acronym: 'AG')
 conference1.tracks.build(name:'Machine Learning', acronym: 'ML')
 
 conference2.tracks.build(name:'Computer Vision', acronym: 'CV')
@@ -19,7 +19,17 @@ conference2.tracks.build(name:'Speech Recognition', acronym: 'SR')
 conference1.save
 conference2.save
 
-# user1 = User.create()
-# track1 = conference1.tracks.first
+user1 = User.create(name: 'Wesley Cook')
+user2 = User.create(name: 'Sean Holcomb')
+user3 = User.create(name: 'Benjamin Hafer')
+
+user1.save
+user2.save
+user3.save
+
+track1.user_roles.build(user_id: user1, role: 'Chairman')
+track1.user_roles.build(user_id: user2, role: 'Reviewer')
+
+track2.user_roles.build(user_id: user3, role: 'Track Chair')
 
 
