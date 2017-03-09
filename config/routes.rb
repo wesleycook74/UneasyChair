@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'uploads/new'
+
+  get 'uploads/create'
+
+  get 'uploads/index'
+
   devise_for :users
   get 'welcome/index'
 
@@ -9,6 +15,7 @@ Rails.application.routes.draw do
   resources :reviews
 
   resources :papers
+  resources :uploads
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 
