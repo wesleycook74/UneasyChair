@@ -211,7 +211,7 @@ DEPENDENCIES
   aws-sdk (~> 2)
   bootstrap-sass
   byebug
-  carrierwave
+  carrierwave (~> 0.9)
   coffee-rails (~> 4.2)
   devise
   faker

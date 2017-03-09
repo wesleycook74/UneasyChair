@@ -17,7 +17,7 @@ class TracksController < ApplicationController
   # GET /tracks/1.json
   def show
     @conference = @track.conference
-    @users = @track.users
+    @users = @track.user_roles
   end
 
   # GET /tracks/new

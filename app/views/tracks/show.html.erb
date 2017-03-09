@@ -16,14 +16,9 @@
             <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
                 <td class="list_description">
                     <dl>
-
+                        <dt><%= user.role %></dt>
                     </dl>
-                </td>
-                <td class="list_actions">
-                    <%= link_to 'View', user %> | 
-                    <%= link_to 'Edit', edit_user_path(user) %> | 
-                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
+                </td>   
             </tr>
         <% end %>
     </table>
