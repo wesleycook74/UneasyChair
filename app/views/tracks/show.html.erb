@@ -33,13 +33,17 @@
                     <dl>
                         <dt><%= user_role.role %></dt>
                     </dl>
-                </td>   
+                </td>  
+                <td class="list_actions">
+                    <%= link_to 'Edit', edit_user_role_path(user_role) %> | 
+                    <%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td> 
             </tr>
         <% end %>
     </table>
 </div>
 <div class="container">
-    <%= link_to 'Add User', new_user_role_path, :class => "btn btn-primary btn-md active" %>
+    <%= link_to 'Add User', new_user_role_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Edit', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Back', @conference, :class => "btn btn-primary btn-md active"%>
 </div>

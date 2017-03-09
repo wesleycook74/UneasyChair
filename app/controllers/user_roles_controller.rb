@@ -3,17 +3,20 @@ class UserRolesController < ApplicationController
 
   # GET /user_roles/new
   def new
+    @track = Track.find(params[:track_id])
     @user_role = UserRole.new
   end
 
   # GET /user_roles/1/edit
   def edit
+    set_track
   end
 
   # POST /user_roles
   # POST /user_roles.json
   def create
-    @user_role = UserRole.new(user_role_params)
+    @track = @track = Track.find(params[:track_id])
+    @user_role = @track.user_roles.build(user_role_params)
     set_track
     respond_to do |format|
       if @user_role.save
@@ -44,9 +47,10 @@ class UserRolesController < ApplicationController
   # DELETE /user_roles/1
   # DELETE /user_roles/1.json
   def destroy
+    set_track
     @user_role.destroy
     respond_to do |format|
-      format.html { redirect_to user_roles_url, notice: 'User role was successfully destroyed.' }
+      format.html { redirect_to @track, notice: 'User role was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -59,7 +63,7 @@ class UserRolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_role_params
-      params.require(:user_role).permit(:role, :user_id, :track_id)
+      params.require(:user_role).permit(:role, :user_id)
     end
 
     def set_track
