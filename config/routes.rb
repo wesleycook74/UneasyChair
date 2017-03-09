@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :conferences
   resources :reviews
 
-  resources :papers
+  resources :papers, only: [:index, :new, :edit, :create, :destroy]
+
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 

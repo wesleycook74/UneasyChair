@@ -5,12 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'carrierwave'
+
 
 
 gem 'bootstrap-sass' #Bootstrap for CSS and JavaScript
 
-gem 'paperclip'  #this gem is used for file uploading apparently is the defacto
+gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 
 gem 'aws-sdk', '~> 2'
 
