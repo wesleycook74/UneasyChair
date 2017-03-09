@@ -206,7 +206,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (~> 2)
+  aws-sdk
   bootstrap-sass
   byebug
   carrierwave (~> 0.9)
