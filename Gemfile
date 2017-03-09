@@ -8,7 +8,7 @@ end
 
 
 
-gem 'bootstrap-sass' #Bootstrap for CSS and JavaScript
+
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 
