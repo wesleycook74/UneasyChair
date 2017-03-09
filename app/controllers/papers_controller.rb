@@ -28,7 +28,7 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
-        format.html { redirect_to @paper, notice: 'Paper was successfully created.' }
+        format.html { redirect_to papers_path, notice: 'Paper was successfully created.' }
         format.json { render :show, status: :created, location: @paper }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class PapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
-      params.require(:paper).permit(:doc_url, :author, :track, :accepted)
+      params.require(:paper).permit(:title, :attachment, :author, :track, :accepted)
     end
 end

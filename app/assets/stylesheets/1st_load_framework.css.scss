@@ -12,6 +12,17 @@ img {
   font-size: inherit;
   }
 
+  .navbar {
+    background-color: #252A2F;
+    border-color: #252A2F;
+}
+
+.search {
+    background-color:#3F4347 !important;
+    color:#8DA1A0 !important;
+    border: none !important;
+}
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
 // to make views framework-neutral
@@ -35,7 +46,7 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
+  //background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar

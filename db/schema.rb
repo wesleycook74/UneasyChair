@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305222345) do
+ActiveRecord::Schema.define(version: 20170309175713) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 20170305222345) do
   end
 
   create_table "papers", force: :cascade do |t|
-    t.string   "doc_url"
+    t.string   "attachment"
     t.string   "author"
     t.string   "track"
     t.boolean  "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title"
   end
 
   create_table "reviews", force: :cascade do |t|

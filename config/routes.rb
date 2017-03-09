@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'uploads/new'
+
+  get 'uploads/create'
+
+  get 'uploads/index'
+
   devise_for :users
   get 'welcome/index'
 
@@ -8,7 +14,10 @@ Rails.application.routes.draw do
   resources :conferences
   resources :reviews
 
-  resources :papers
+
+  resources :papers, only: [:index, :new, :edit, :create, :destroy]
+
+
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 
