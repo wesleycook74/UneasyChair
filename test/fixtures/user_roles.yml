@@ -2,10 +2,10 @@
 
 one:
   role: MyString
-  track: one
   user: one
+  track: one
 
 two:
   role: MyString
-  track: two
   user: two
+  track: two
