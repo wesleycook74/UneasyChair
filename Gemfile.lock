@@ -113,6 +113,14 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
+
     pg (0.18.4)
     public_suffix (2.0.5)
     puma (3.7.1)
@@ -215,6 +223,10 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+<<<<<<< HEAD
+=======
+  paperclip
+>>>>>>> test_branch
   pg (= 0.18.4)
   puma (~> 3.0)
   rails (~> 5.0.1)
