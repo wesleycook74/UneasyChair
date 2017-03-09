@@ -13,14 +13,11 @@
         </div>
         <div class="col-md-4"></div>
     </div>
-  
-
 </div>
 
-
-
+<div class="container">
 <H1>Tracks</H1>
-<table>
+<table class="table table-hover">
     <% @tracks.each do |track| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
             <td class="list_description">
@@ -37,7 +34,9 @@
         </tr>
     <% end %>
 </table>
-
-<%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create"%> |
-<%= link_to 'Edit Conference', edit_conference_path(@conference) %> |
-<%= link_to 'Back', conferences_path %>
+</div>
+<div class="container">
+<%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-md active"%>
+<%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-md active"%>
+<%= link_to 'Back', conferences_path, :class => "btn btn-primary btn-md active" %>
+</div>

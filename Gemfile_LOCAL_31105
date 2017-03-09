@@ -5,9 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'faker'
 
-gem 'carrierwave'
+
+
+gem 'bootstrap-sass' #Bootstrap for CSS and JavaScript
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 

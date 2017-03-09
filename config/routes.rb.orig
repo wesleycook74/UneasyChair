@@ -1,8 +1,37 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
+
+  get 'uploads/new'
+
+  get 'uploads/create'
+
+  get 'uploads/index'
+
+  devise_for :users
+  get 'welcome/index'
+
+  resources :tracks
+  resources :users
+  resources :conferences
   resources :reviews
+
+<<<<<<< HEAD
+
+  resources :papers, only: [:index, :new, :edit, :create, :destroy]
+
+
 =======
+  resources :tracks do
+    member do
+      get 'add_user'
+    end
+  end
+
   resources :papers
->>>>>>> 3bd34d1f06d5ed370a8f37efc1fd501fc019c671
+>>>>>>> add_users_to_tracks
+
+  # devise_for :members, :controllers => { :registrations => "registrations" }
+
+  root 'welcome#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

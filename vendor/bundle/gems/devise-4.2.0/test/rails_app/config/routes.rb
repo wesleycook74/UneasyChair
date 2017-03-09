@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tracks do
+    member do
+      get 'add_user'
+    end
+  end
   resources :admins, only: [:index]
 
   # Users scope

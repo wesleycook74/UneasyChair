@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   resources :papers, only: [:index, :new, :edit, :create, :destroy]
 
 
+  resources :tracks do
+    member do
+      get 'add_user'
+    end
+  end
+
+  resources :papers
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 

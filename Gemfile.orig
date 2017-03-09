@@ -5,9 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+<<<<<<< HEAD
+
+
+=======
 gem 'faker'
 
 gem 'carrierwave'
+>>>>>>> add_users_to_tracks
+
+gem 'bootstrap-sass' #Bootstrap for CSS and JavaScript
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 

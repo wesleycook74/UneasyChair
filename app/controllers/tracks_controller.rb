@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :set_track, only: [:show, :edit, :update, :destroy, :add_user]
 
   # GET /tracks
   # GET /tracks.json
@@ -7,10 +7,17 @@ class TracksController < ApplicationController
     @tracks = Track.all
   end
 
+  def add_user
+    @conference = @track.conference
+    raise params.inspect
+    @user_role = @track.user_roles.build(track_params[:user_role])
+  end
+
   # GET /tracks/1
   # GET /tracks/1.json
   def show
     @conference = @track.conference
+    @users = @track.users
   end
 
   # GET /tracks/new
@@ -76,6 +83,7 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:name, :acronym, :conference_id)
+      params.require(:track).permit(:name, :acronym, :conference_id, user_role_attributes: [ :user_id, :role ])
     end
+
 end
