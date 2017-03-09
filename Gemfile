@@ -12,7 +12,7 @@ end
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
