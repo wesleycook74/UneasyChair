@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   def index
+    if user_signed_in?
+      redirect_to current_user
+    end
   end
 
   helper_method :resource_name, :resource, :devise_mapping

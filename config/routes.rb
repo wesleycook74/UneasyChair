@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :user_roles, only: [:new, :create, :edit, :destroy]
   get 'uploads/new'
 
   get 'uploads/create'
