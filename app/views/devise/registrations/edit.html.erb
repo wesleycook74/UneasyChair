@@ -1,4 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<br />
+<div class="col-md-2">
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Settings</div>
+
+  <!-- List group -->
+  <div class="list-group">
+  <a href="#" class="list-group-item active">Account</a>
+  <a href="#" class="list-group-item">Profile</a>
+  <a href="#" class="list-group-item">Affiliations</a>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<h2 class="page-header">Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -38,6 +54,7 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
