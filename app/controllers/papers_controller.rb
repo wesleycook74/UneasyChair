@@ -24,7 +24,10 @@ class PapersController < ApplicationController
   # POST /papers
   # POST /papers.json
   def create
-    @paper = Paper.new(paper_params)
+
+    @user = current_user
+    @paper = @user.papers.build(paper_params)
+
 
     respond_to do |format|
       if @paper.save
@@ -69,6 +72,6 @@ class PapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
-      params.require(:paper).permit(:title, :attachment, :author, :track, :accepted)
+      params.require(:paper).permit(:title, :attachment, :author, :track_id, :accepted)
     end
 end
