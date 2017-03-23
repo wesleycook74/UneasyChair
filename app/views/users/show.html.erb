@@ -1,14 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+              <h1>Hello <%= @user.name %></h1> 
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="container">
+    <H3>Conferences </H3>
+    <table class="table table-hover">
 
-<p>
-  <strong>Affiliation:</strong>
-  <%= @user.affiliation %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+        <% @user_roles.each do |user_role| %>
+            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+                <td class="list_description">
+                    <dl>
+                        <dt><%= user_role.track.conference.name%></dt>
+                    </dl>
+                </td>  
+                <td class="list_description">
+                    <dl>
+                        <dt><%= user_role.track.name %></dt>
+                    </dl>
+                </td>  
+                <td class="list_description">
+                    <dl>
+                        <dt><%= user_role.role %></dt>
+                    </dl>
+                </td>  
+                <td class="list_actions">
+                    <%= link_to 'Go to', conference_path(user_role.track.conference) %>
+                </td> 
+            </tr>
+        <% end %>
+    </table>
+</div>
