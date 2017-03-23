@@ -7,7 +7,7 @@
 
 <p>
   <strong>Doc url:</strong>
-  <%= @paper.doc_url %>
+  <%= @paper.attachment %>
 </p>
 
 <p>
@@ -23,6 +23,10 @@
 <p>
   <strong>Accepted:</strong>
   <%= @paper.accepted %>
+</p>
+<p>
+  <strong>Reviews:</strong>
+  <%= @paper.reviews%>
 </p>
 
 <%= link_to 'Edit', edit_paper_path(@paper) %> |

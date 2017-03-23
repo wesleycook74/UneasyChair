@@ -21,7 +21,7 @@
         <td><%= paper.title%></td>
         <td><%= link_to "Download Paper", paper.attachment_url %></td>
         <td><%= paper.author %></td>
-        <td><%= paper.track %></td>
+        <td><%= paper.track.name %></td>
         <td><%= paper.accepted %></td>
         <td><%= link_to 'Show', paper %></td>
         <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
