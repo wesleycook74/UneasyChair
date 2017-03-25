@@ -8,31 +8,89 @@
     </div>
 </div>
 
+<%if @user_roles.empty? && @user.conferences.empty? && @user.papers.empty?%>
+    <div class="container">
+        <H4>
+        There's nothing to show here.
+        You're not involved with any conferences yet! :(
+        </H4>
+    </div>
+<%end%>
 <div class="container">
-    <H3>Conferences </H3>
+    <%if !@user_roles.empty?%>
+        <H3>Conferences You Joined </H3>
+        <table class="table table-hover">
+
+            <% @user_roles.each do |user_role| %>
+                <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+                    <td class="list_description">
+                        <dl>
+                            <dt><%= user_role.track.conference.name%></dt>
+                        </dl>
+                    </td>  
+                    <td class="list_description">
+                        <dl>
+                            <dt><%= user_role.track.name %></dt>
+                        </dl>
+                    </td>  
+                    <td class="list_description">
+                        <dl>
+                            <dt><%= user_role.role %></dt>
+                        </dl>
+                    </td>  
+                    <td class="list_actions">
+                        <%= link_to 'Go to', track_path(user_role.track) %>
+                    </td> 
+                </tr>
+            <% end %>
+        </table>
+    <%end%>
+</div>
+
+<div class="container">
+    <%if !@user.conferences.empty?%>
+    <H3>Conferences You Own</H3>
     <table class="table table-hover">
 
-        <% @user_roles.each do |user_role| %>
+        <% @user.conferences.each do |conference| %>
             <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
                 <td class="list_description">
                     <dl>
-                        <dt><%= user_role.track.conference.name%></dt>
+                        <dt><%= conference.name%></dt>
                     </dl>
-                </td>  
-                <td class="list_description">
-                    <dl>
-                        <dt><%= user_role.track.name %></dt>
-                    </dl>
-                </td>  
-                <td class="list_description">
-                    <dl>
-                        <dt><%= user_role.role %></dt>
-                    </dl>
-                </td>  
+                </td>   
                 <td class="list_actions">
-                    <%= link_to 'Go to', conference_path(user_role.track.conference) %>
+                    <%= link_to 'Go to', conference_path(conference) %>
                 </td> 
             </tr>
         <% end %>
     </table>
+    <%end%>
+    <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
+</div>
+
+<div class="container">
+    <%if !@user.papers.empty?%>
+    <H3>Your Contributions</H3>
+    <table class="table table-hover">
+
+        <% @user.papers.each do |paper| %>
+            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+                <td class="list_description">
+                    <dl>
+                        <dt><%= paper.title%></dt>
+                    </dl>
+                </td>
+                <td class="list_description">
+                    <dl>
+                        <dt><%= paper.track.name%></dt>
+                    </dl>
+                </td>      
+                <td class="list_actions">
+                    <%= link_to 'Go to', paper_path(paper) %>
+                </td> 
+            </tr>
+        <% end %>
+    </table>
+    <%end%>
 </div>

@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :tracks, through: :user_roles
   has_many :user_roles
+  has_many :papers
+  has_many :conferences
 end
