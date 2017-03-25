@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170325205057) do
   create_table "papers", force: :cascade do |t|
     t.string   "attachment"
     t.string   "author"
+    t.string   "track"
     t.boolean  "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
