@@ -27,7 +27,7 @@ class ConferencesController < ApplicationController
   def create
     @user = current_user
     @conference = @user.conferences.build(conference_params)
-    @conference.tracks.build(name: 'Default')
+    @conference.tracks.build(name: 'Main')
     respond_to do |format|
       if @conference.save
         format.html { redirect_to @conference, notice: 'Conference was successfully created.' }
