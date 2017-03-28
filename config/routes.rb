@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :conferences
   resources :reviews
+  resources :requests
 
 
   resources :papers, only: [:index, :new, :edit, :create, :destroy]
