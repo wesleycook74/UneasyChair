@@ -5,12 +5,12 @@ class RequestsController < ApplicationController
 
   def show
   end
-  
+
   def create
 
-    @user = current_user
-    @request = Request.new(request_params)
-
+    #@user = current_user
+    #@request = Request.new(request_params)
+    @request = current_user.requests.build(:receiver_id => params[:receiver_id])
 
     respond_to do |format|
       if @request.save
