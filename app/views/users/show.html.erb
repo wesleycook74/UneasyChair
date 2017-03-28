@@ -2,7 +2,7 @@
   <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-              <h1>Hello <%= @user.name %></h1> 
+              <h1>Hello <%= @user.name %></h1>
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -27,20 +27,20 @@
                         <dl>
                             <dt><%= user_role.track.conference.name%></dt>
                         </dl>
-                    </td>  
+                    </td>
                     <td class="list_description">
                         <dl>
                             <dt><%= user_role.track.name %></dt>
                         </dl>
-                    </td>  
+                    </td>
                     <td class="list_description">
                         <dl>
                             <dt><%= user_role.role %></dt>
                         </dl>
-                    </td>  
+                    </td>
                     <td class="list_actions">
                         <%= link_to 'Go to', track_path(user_role.track) %>
-                    </td> 
+                    </td>
                 </tr>
             <% end %>
         </table>
@@ -58,10 +58,10 @@
                     <dl>
                         <dt><%= conference.name%></dt>
                     </dl>
-                </td>   
+                </td>
                 <td class="list_actions">
                     <%= link_to 'Go to', conference_path(conference) %>
-                </td> 
+                </td>
             </tr>
         <% end %>
     </table>
@@ -85,12 +85,22 @@
                     <dl>
                         <dt><%= paper.track.name%></dt>
                     </dl>
-                </td>      
+                </td>
                 <td class="list_actions">
                     <%= link_to 'Go to', paper_path(paper) %>
-                </td> 
+                </td>
             </tr>
         <% end %>
     </table>
     <%end%>
 </div>
+
+<h2>Your Contacts</h2>
+<ul>
+  <% for connection in @user.connections %>
+  <li>
+    <%= h connection.contact.name %>
+    (<%= link_to "remove", connection, :method => :delete %>)
+  </li>
+  <% end %>
+</ul>
