@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'hello_world', to: 'hello_world#index'
   resources :user_roles, only: [:new, :create, :edit, :destroy]
   get 'uploads/new'
 
