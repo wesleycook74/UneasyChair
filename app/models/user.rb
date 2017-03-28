@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :papers
   has_many :conferences
+  has_many :requests
 end
