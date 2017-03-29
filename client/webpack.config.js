@@ -3,6 +3,7 @@
  "only-multiline"} ] */
 
 const webpack = require('webpack');
+const pathLib = require('path');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 
@@ -16,8 +17,7 @@ const config = {
 
   output: {
     filename: 'webpack-bundle.js',
-    //path: '/home/wesley/Documents/cs4900/projects/uneasy_chair/app/assets/webpack',
-    path: '../app/assets/webpack',
+    path: pathLib.resolve(__dirname, '../app/assets/webpack'),
   },
 
   resolve: {
