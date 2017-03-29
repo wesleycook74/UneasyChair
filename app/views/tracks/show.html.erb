@@ -41,9 +41,32 @@
             </tr>
         <% end %>
     </table>
+  <H3>Papers</H3>
+  <table class="table table-hover">
+    <% @papers = @track.papers %>
+    <% @papers.each do |paper| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td class="list_description">
+            <dl>
+              <dt><%= paper.title %></dt>
+            </dl>
+          </td>
+          <td class="list_description">
+            <dl>
+              <dt><%= paper.author %></dt>
+            </dl>
+          </td>
+          <td class="list_actions">
+            <%= link_to 'Show', paper %> |
+
+          </td>
+        </tr>
+    <% end %>
+  </table>
 </div>
 <div class="container">
     <%= link_to 'Add User', new_user_role_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
+    <%= link_to 'Add Paper', new_paper_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Edit', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Back', @conference, :class => "btn btn-primary btn-md active"%>
 </div>
