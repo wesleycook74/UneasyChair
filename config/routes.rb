@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :papers
+  resources :papers do
+    resources :reviews
+  end
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 
