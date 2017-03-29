@@ -1,17 +1,30 @@
 import React, { PropTypes } from 'react';
+import axios from 'axios';
 
 const Conferences = React.createClass ({
   getInitialState: function() {
-        return { };
+        return { 
+          conferences: []
+        };
   },  
 
   componentDidMount: function() {
-        this.setState({ books: this.props.catalog });
+    var self = this;
+
+		axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+		axios.get('/conferences')
+			.then(function (response) {
+				console.log(response.data);
+				self.setState({ conferences: response.data })
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
   },
 
   render() {
     return (
-      <p> Conferences </p>
+      <div> </div>
     );
   }
 });

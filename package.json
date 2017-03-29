@@ -12,6 +12,7 @@
     "test": "rspec"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "react-native-headers": "^1.1.3"
   }
 }
