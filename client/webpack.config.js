@@ -16,7 +16,8 @@ const config = {
 
   output: {
     filename: 'webpack-bundle.js',
-    path: '/home/wesley/Documents/cs4900/projects/uneasy_chair/app/assets/webpack',
+    //path: '/home/wesley/Documents/cs4900/projects/uneasy_chair/app/assets/webpack',
+    path: '../app/assets/webpack',
   },
 
   resolve: {
