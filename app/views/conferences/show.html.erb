@@ -34,7 +34,7 @@
 </table>
 </div>
 <div class="container">
-<%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-md active"%>
-<%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-md active"%>
-<%= link_to 'Back', conferences_path, :class => "btn btn-primary btn-md active" %>
+<%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-sm active"%>
+<%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-sm active"%>
+<%= link_to 'Back', current_user, :class => "btn btn-primary btn-sm active" %>
 </div>

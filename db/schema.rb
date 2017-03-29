@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323194604) do
+ActiveRecord::Schema.define(version: 20170325205057) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
     t.string   "acronym"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_conferences_on_user_id"
   end
 
   create_table "papers", force: :cascade do |t|
     t.string   "attachment"
     t.string   "author"
+    t.string   "track"
     t.boolean  "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
