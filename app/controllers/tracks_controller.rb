@@ -13,6 +13,10 @@ class TracksController < ApplicationController
     @user_role = @track.user_roles.build(track_params[:user_role])
   end
 
+  def add_paper
+
+  end
+
   # GET /tracks/1
   # GET /tracks/1.json
   def show
