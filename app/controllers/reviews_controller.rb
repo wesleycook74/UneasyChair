@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @paper = Paper.find(params[:paper_id])
   end
 
   # GET /reviews/1/edit
@@ -24,15 +25,16 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
+    @user = current_user
     @paper = Paper.find(params[:paper_id])
-    @review = @paper.reviews.create(review_params)
+    @review = @paper.reviews.build(review_params)
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.json { render json: @review.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

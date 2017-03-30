@@ -41,7 +41,9 @@
     <%= f.number_field :confidence %>
   </div>
 
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit , name: "paper_id", value: params[:paper_id], :class => "btn btn-primary btn-md active"%>
   </div>
 <% end %>

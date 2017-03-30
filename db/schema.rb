@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325205057) do
+ActiveRecord::Schema.define(version: 20170330024626) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20170325205057) do
   create_table "papers", force: :cascade do |t|
     t.string   "attachment"
     t.string   "author"
-    t.string   "track"
     t.boolean  "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170325205057) do
     t.integer  "confidence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "paper_id"
   end
 
   create_table "tracks", force: :cascade do |t|
