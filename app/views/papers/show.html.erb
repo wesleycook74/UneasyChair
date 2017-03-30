@@ -30,6 +30,24 @@
             :action => "Create", :class => "btn btn-primary btn-sm active"%>
 
 </p>
+<table class="table table-hover">
+  <th><td>Score</td><td>Date</td></th>
+  <% @paper.reviews.each do |review| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td class="list_description">
+          <tr>
+            <td></td>
+            <td><%= review.score %></td>
+            <td><%= review.date %></td>
+            <td class="list_actions">
+              <%= link_to 'View Review', review %>
+            </td>
+          </tr>
+        </td>
+
+      </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_paper_path(@paper) %> |
 <%= link_to 'Back', papers_path %>
