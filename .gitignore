@@ -18,5 +18,15 @@ public/uploads/paper/*
 !/log/.keep
 !/tmp/.keep
 
+# Generated js bundles
+/app/assets/webpack/*
+
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# React on Rails
+npm-debug.log*
+node_modules
