@@ -34,7 +34,7 @@ const Conferences = React.createClass ({
     }.bind(this));
 
     return (
-      <table className="table table-striped" width="auto">
+      <table className="table table-hover" width="auto">
         <thead>
           <tr>
             <th className="col-sm-2">Name</th>          
