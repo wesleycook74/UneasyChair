@@ -25,10 +25,6 @@
     <%= f.text_field :author %>
   </div>
 
-  <div class="field">
-    <%= f.label :track_id %>
-    <%= f.text_field :track_id %>
-  </div>
 
   <div class="field">
     <%= f.label :accepted %>
@@ -36,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit , name: "track_id", value: params[:track_id], :class => "btn btn-primary btn-md active"%>
   </div>
 <% end %>

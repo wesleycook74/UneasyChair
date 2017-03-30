@@ -26,7 +26,8 @@ class PapersController < ApplicationController
   def create
 
     @user = current_user
-    @paper = @user.papers.build(paper_params)
+    @track = Track.find(params[:track_id])
+    @paper = @track.papers.build(paper_params)
 
 
     respond_to do |format|
