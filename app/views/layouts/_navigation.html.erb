@@ -43,16 +43,11 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=%>  <span class="glyphicon glyphicon-bell">
         </span><span class="badge">4</span></a>
         <ul class="dropdown-menu">
-          <% for request in current_user.requests %>
+          <% for request in current_user.invitations %>
           <li>
-            <%= h request.receiver.name %>
+            Invitation from <%= h request.user.name %>
           </li>
           <% end %>
-          <li><%= link_to 'My Page', user_path(current_user.id), :method=>'get' %></li>
-          <li><a href="#">My Contributions</a></li>
-          <li><a href="#">Contacts</a></li>
-          <li><%= link_to 'Edit Profile', edit_user_registration_path, :method=>'get' %></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
         </ul>
       </li>
       <li class="dropdown">
