@@ -37,19 +37,22 @@
         <input type="text" class="form-control search" placeholder="Search Uneasy Chair">
       </div>
     </form>
+
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=%>  <span class="glyphicon glyphicon-bell">
-        </span><span class="badge">4</span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=%>
+          <span class="glyphicon glyphicon-bell">
+          </span><span class="badge badge-info"><%=current_user.invitations.count%></span></a>
         <ul class="dropdown-menu">
-          <% for request in current_user.invitations %>
+          <% for request in current_user.invitations.take(5) %>
           <li>
-            Invitation from <%= h request.user.name %>
+            <a>Invitation from <%= h request.user.name %></a>
           </li>
           <% end %>
         </ul>
       </li>
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %>  <span class="caret"></span></a>
         <ul class="dropdown-menu">
