@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import axios from 'axios';
+import Conference from './Conference';
 
 const Conferences = React.createClass ({
   getInitialState: function() {
@@ -15,7 +16,7 @@ const Conferences = React.createClass ({
 		axios.get('/conferences')
 			.then(function (response) {
 				console.log(response.data);
-				self.setState({ conferences: response.data })
+				self.setState({ conferences: response.data.conferences })
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -23,8 +24,27 @@ const Conferences = React.createClass ({
   },
 
   render() {
+    var conferences = [];
+
+    console.log(this.state.conferences)
+
+    this.state.conferences.forEach(function(conference) {
+      conferences.push(<Conference conference={conference}
+                                    key={'conference'+ conference.id}/>);
+    }.bind(this));
+
     return (
-      <div> </div>
+      <table className="table table-striped" width="auto">
+        <thead>
+          <tr>
+            <th className="col-sm-2">Name</th>          
+            <th className="col-sm-2">Acronym</th>          
+          </tr>
+        </thead>
+        <tbody>
+          {conferences}
+        </tbody>
+      </table>
     );
   }
 });
