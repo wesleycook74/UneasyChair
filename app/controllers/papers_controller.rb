@@ -75,4 +75,11 @@ class PapersController < ApplicationController
     def paper_params
       params.require(:paper).permit(:title, :attachment, :author, :track_id, :accepted)
     end
+
+    def average_score
+      @total = 0;
+      @paper.reviews.each do |review|
+        @total = @total + review.score
+      end
+    end
 end
