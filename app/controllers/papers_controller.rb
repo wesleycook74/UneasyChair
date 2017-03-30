@@ -27,7 +27,7 @@ class PapersController < ApplicationController
 
     @user = current_user
     @track = Track.find(params[:track_id])
-    @paper = @track.papers.build(paper_params)
+    @paper = @track.papers.build(paper_params.merge(:user_id =>@user.id))
 
 
     respond_to do |format|
