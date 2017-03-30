@@ -40,7 +40,7 @@
             <td><%= review.score %></td>
             <td><%= review.date %></td>
             <td class="list_actions">
-              <%= link_to 'View Review', review %>
+              <%= link_to 'View Review', review_path(:paper_id => @paper.id) %>
             </td>
           </tr>
         </td>
