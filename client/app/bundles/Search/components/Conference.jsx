@@ -8,14 +8,13 @@ const conference = React.createClass ({
 
     handleViewConference: function(e) {   
       // this.props.handleAddToCart(this.props.book.id); 
-      console.log("Clicked")
+      console.log(this.props.conference)
   },
 
   render: function() {
     return(
       <tr className="entry" onClick={this.handleViewConference}>    
         <td>{this.props.conference.name}</td>
-        <td>{this.props.conference.acronym}</td>
       </tr>
     )
   }

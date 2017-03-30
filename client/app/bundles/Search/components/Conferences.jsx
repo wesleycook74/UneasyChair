@@ -23,6 +23,11 @@ const Conferences = React.createClass ({
 			});
   },
 
+
+	handleSearch: function(books) {
+		this.setState({ conferences: conferences });
+	},
+
   render() {
     var conferences = [];
 
@@ -37,8 +42,7 @@ const Conferences = React.createClass ({
       <table className="table table-hover" width="auto">
         <thead>
           <tr>
-            <th className="col-sm-2">Name</th>          
-            <th className="col-sm-2">Acronym</th>          
+            <th className="col-sm-2">Name</th>                   
           </tr>
         </thead>
         <tbody>
