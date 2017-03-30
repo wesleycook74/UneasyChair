@@ -20,6 +20,7 @@
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to "Add Contact", connections_path(:contact_id => user), :method => :post %></td>
+        <td><%= link_to "Send Request", requests_path(:receiver_id => user), :method => :post %></td>
       </tr>
     <% end %>
   </tbody>

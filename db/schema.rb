@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170328013645) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "sender_id"
+    t.integer  "user_id"
     t.integer  "receiver_id"
     t.string   "role"
     t.datetime "created_at",  null: false
