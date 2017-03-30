@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :papers
   has_many :conferences
   has_many :requests
+  has_many :received_requests, :class_name => 'Request', :foreign_key => 'receiver_id'
   has_many :connections
   has_many :contacts, through: :connections
 end
