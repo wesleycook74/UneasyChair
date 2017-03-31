@@ -30,5 +30,6 @@
   <%= @review.confidence %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', paper_path(params[:paper_id]) %>
+<%= link_to 'Edit', edit_review_path(@review) %>
+
+<%= link_to 'Back', paper_path(@review.paper_id), :class => "btn btn-primary btn-sm active" %>

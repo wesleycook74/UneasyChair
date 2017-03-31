@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-    @paper = Paper.find(params[:paper_id])
+
   end
 
   # GET /reviews/new
