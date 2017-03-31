@@ -13,6 +13,11 @@ class ConferencesController < ApplicationController
     @tracks = @conference.tracks
   end
 
+  def search
+    conferences = Conference.where("name LIKE '%#{params[:query]}%'")
+    render json: conferences
+  end
+
   # GET /conferences/new
   def new
     @conference = Conference.new

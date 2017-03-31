@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import axios from 'axios';
 import Conference from './Conference';
+import SearchBar from './SearchBar'
 
 const Conferences = React.createClass ({
   getInitialState: function() {
@@ -24,7 +25,7 @@ const Conferences = React.createClass ({
   },
 
 
-	handleSearch: function(books) {
+	handleSearch: function(conferences) {
 		this.setState({ conferences: conferences });
 	},
 
@@ -39,16 +40,23 @@ const Conferences = React.createClass ({
     }.bind(this));
 
     return (
-      <table className="table table-hover" width="auto">
-        <thead>
-          <tr>
-            <th className="col-sm-2">Name</th>                   
-          </tr>
-        </thead>
-        <tbody>
-          {conferences}
-        </tbody>
-      </table>
+      <div className="parent">
+        <div className="row">
+					<div className="col-md-12">
+						<SearchBar handleSearch={this.handleSearch} />
+					</div>
+				</div>
+        <table className="table table-hover" width="auto">
+          <thead>
+            <tr>
+              <th className="col-sm-2">Name</th>                   
+            </tr>
+          </thead>
+          <tbody>
+            {conferences}
+          </tbody>
+        </table>
+      </div>
     );
   }
 });
