@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/conferences/search'
 
+  get 'users/search'
+
   get 'uploads/index'
 
   devise_for :users
