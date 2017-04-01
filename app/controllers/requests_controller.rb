@@ -1,10 +1,13 @@
 class RequestsController < ApplicationController
+  before_action :set_request, only: [:show, :destroy]
+
   def new
     @track = Track.find(params[:track_id])
     @request = Request.new
   end
 
   def show
+    @track = @request.track
   end
 
   def create
@@ -23,6 +26,12 @@ class RequestsController < ApplicationController
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @request.destroy
+    flash[:notice] = "Removed contact."
+    redirect_to root_url
   end
 
 

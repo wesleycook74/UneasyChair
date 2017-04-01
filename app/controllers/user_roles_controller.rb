@@ -18,6 +18,7 @@ class UserRolesController < ApplicationController
     @user = current_user
     @track = Track.find(params[:track_id])
     @user_role = @track.user_roles.build(user_role_params.merge(:user_id => @user.id))
+    # @user_role = @track.user_roles.build(user_role_params)
     set_track
     respond_to do |format|
       if @user_role.save
@@ -70,5 +71,5 @@ class UserRolesController < ApplicationController
     def set_track
       @track = @user_role.track
     end
-    
+
 end

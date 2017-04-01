@@ -1,0 +1,6 @@
+<p>You have been invited</p>
+
+<%= button_to 'Accept', user_roles_path(:user_role => {:role => @request.role}),
+ :method => :post, :class => "btn btn-primary btn-md active", params: {track_id: @track} %>
+
+<%= link_to "Deny", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
