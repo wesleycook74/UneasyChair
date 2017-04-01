@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170328013645) do
+=======
+ActiveRecord::Schema.define(version: 20170330024626) do
+>>>>>>> 939261fb109acb2169f3fc1048825fcb10216076
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -57,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170328013645) do
     t.integer  "confidence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "paper_id"
   end
 
   create_table "tracks", force: :cascade do |t|

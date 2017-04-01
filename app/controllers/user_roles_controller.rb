@@ -15,8 +15,9 @@ class UserRolesController < ApplicationController
   # POST /user_roles
   # POST /user_roles.json
   def create
+    @user = current_user
     @track = Track.find(params[:track_id])
-    @user_role = @track.user_roles.build(user_role_params)
+    @user_role = @track.user_roles.build(user_role_params.merge(:user_id => @user.id))
     set_track
     respond_to do |format|
       if @user_role.save

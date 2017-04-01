@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def search
+    users = User.where("name LIKE '%#{params[:query]}%'")
+    render json: users
+  end
+
   # GET /users/new
   def new
     @user = User.new

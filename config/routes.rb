@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get 'uploads/create'
 
+  get '/conferences/search'
+
+  get 'users/search'
+
   get 'uploads/index'
 
   devise_for :users
@@ -27,7 +31,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :papers
+  resources :papers do
+    resources :reviews
+  end
 
   # devise_for :members, :controllers => { :registrations => "registrations" }
 

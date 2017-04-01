@@ -4,11 +4,14 @@
   <strong>Title:</strong>
   <%= @paper.title %>
 </p>
-
 <p>
-  <strong>Doc url:</strong>
-  <%= @paper.attachment %>
+  <strong>Overall Score:</strong>
+
+  <% @total = @paper.reviews.sum(:score).to_f / @paper.reviews.count(:score)%>
+  <%=  number_with_precision(@total, :precision => 2)%>
+
 </p>
+
 
 <p>
   <strong>Author:</strong>
@@ -17,7 +20,7 @@
 
 <p>
   <strong>Track:</strong>
-  <%= @paper.track %>
+  <%= @paper.track.name %>
 </p>
 
 <p>
@@ -25,9 +28,32 @@
   <%= @paper.accepted %>
 </p>
 <p>
-  <strong>Reviews:</strong>
-  <%= @paper.reviews%>
+  <%= link_to "Download A Copy", @paper.attachment_url %>
 </p>
+<p>
+<H3>Reviews</H3>
+<%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
+            :action => "Create", :class => "btn btn-primary btn-sm active"%>
+
+</p>
+<table class="table table-hover">
+  <th><td><strong>Score</strong></td><td><strong>Date</strong></td><td><strong>View</strong></td></th>
+  <% @paper.reviews.each do |review| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+          <tr>
+            <td></td>
+            <td><%= review.score %></td>
+            <td><%= review.date %></td>
+            <td class="list_actions">
+              <%= link_to 'View Review', review_path(:paper_id => @paper.id) %>
+            </td>
+          </tr>
+
+
+      </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_paper_path(@paper) %> |
-<%= link_to 'Back', papers_path %>
+<%= link_to 'Back', track_path(@paper.track), :class => "btn btn-primary btn-sm active" %>

@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :score %>
-    <%= f.number_field :score %>
-  </div>
+
 
   <div class="field">
     <%= f.label :date %>
@@ -28,20 +25,22 @@
 
   <div class="field">
     <%= f.label :score %>
-    <%= f.number_field :score %>
+    <%= f.number_field :score ,max: 5, min: -5 %>
   </div>
 
   <div class="field">
     <%= f.label :rebuttal %>
-    <%= f.text_field :rebuttal %>
+    <%= f.text_area :rebuttal, :cols => "50", :rows => "10" %>
   </div>
 
   <div class="field">
     <%= f.label :confidence %>
-    <%= f.number_field :confidence %>
+    <%= f.number_field :confidence, max: 5, min: -5 %>
   </div>
 
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit , name: "paper_id", value: params[:paper_id], :class => "btn btn-primary btn-md active"%>
   </div>
 <% end %>

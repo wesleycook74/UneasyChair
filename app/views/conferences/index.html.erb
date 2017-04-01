@@ -1,25 +1,6 @@
 
-<h1>Conferences</h1>
+<div class='container'>
+  <H1> Search for Conferences </H>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @conferences.each do |conference| %>
-      <tr>
-        <td><%= conference.name %></td>
-        <td><%= link_to 'Show', conference %></td>
-        <td><%= link_to 'Edit', edit_conference_path(conference) %></td>
-        <td><%= link_to 'Destroy', conference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Conference', new_conference_path %>
+  <%= react_component("Conferences", props: {conferences: @conferences}, prerender: false) %>
+</div>
