@@ -8,6 +8,10 @@ class RequestsController < ApplicationController
 
   def show
     @track = @request.track
+    @sender = @request.user.username
+    @role = @request.role
+    @trackname = @track.name
+    @conference = Conference.find(@track.conference)
   end
 
   def create
