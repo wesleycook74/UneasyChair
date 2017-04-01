@@ -45,9 +45,9 @@
           <span class="glyphicon glyphicon-bell">
           </span><span class="badge badge-info"><%=current_user.invitations.count%></span></a>
         <ul class="dropdown-menu">
-          <% for request in current_user.invitations.take(5) %>
+          <% for invitation in current_user.invitations.take(5) %>
           <li>
-            <a>Invitation from <%= h request.user.name %></a>
+            <a>Invitation from <%= h invitation.user.name %></a>
           </li>
           <% end %>
         </ul>
