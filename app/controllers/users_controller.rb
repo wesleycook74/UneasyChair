@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_roles, only: [:show, :edit, :update, :destroy] 
+  before_action :set_user_roles, only: [:show, :edit, :update, :destroy]
   # GET /users
   # GET /users.json
   def index
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     def set_user_roles
       @user_roles = @user.user_roles
     end
-    
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

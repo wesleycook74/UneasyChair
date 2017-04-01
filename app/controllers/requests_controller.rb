@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   def new
+    @track = Track.find(params[:track_id])
     @request = Request.new
   end
 
@@ -10,7 +11,8 @@ class RequestsController < ApplicationController
 
     #@user = current_user
     #@request = Request.new(request_params)
-    @request = current_user.requests.build(:receiver_id => params[:receiver_id])
+    #@track = Track.find(params[:track_id])
+    @request = current_user.requests.build(request_params)
 
     respond_to do |format|
       if @request.save
@@ -22,4 +24,17 @@ class RequestsController < ApplicationController
       end
     end
   end
+
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_request
+      @request = Request.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def request_params
+      params.require(:request).permit(:role, :receiver_id, :track_id)
+    end
+
 end

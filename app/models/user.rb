@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :invitations, :class_name => 'Request', :foreign_key => 'receiver_id'
   has_many :connections
   has_many :contacts, through: :connections
+
+  validates_uniqueness_of :username
 end
