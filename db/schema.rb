@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170328013645) do
-=======
-ActiveRecord::Schema.define(version: 20170330024626) do
->>>>>>> 939261fb109acb2169f3fc1048825fcb10216076
+ActiveRecord::Schema.define(version: 20170401155301) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -98,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170330024626) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
