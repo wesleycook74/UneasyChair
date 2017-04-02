@@ -18,7 +18,8 @@
 
   <div class="field">
     <%= f.label :receiver_id %>
-    <%= f.text_field :receiver_id %>
+    <!-- <%= f.text_field :receiver_id %> -->
+    <%= f.collection_select(:receiver_id, @contacts, :id, :username, :prompt => true) %>
   </div>
 
   <%= f.hidden_field :track_id, :value => @track.id %>

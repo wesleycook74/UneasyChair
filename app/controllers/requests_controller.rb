@@ -4,6 +4,7 @@ class RequestsController < ApplicationController
   def new
     @track = Track.find(params[:track_id])
     @request = Request.new
+    @contacts = current_user.contacts
   end
 
   def show
