@@ -17,7 +17,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :receiver_id %>
     <!-- <%= f.text_field :receiver_id %> -->
     <%= f.collection_select(:receiver_id, @contacts, :id, :username, :prompt => true) %>
   </div>
