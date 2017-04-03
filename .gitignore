@@ -23,6 +23,9 @@ public/uploads/paper/*
 # Generated js bundles
 /app/assets/webpack/*
 
+#local uploads
+/public/uploads/*
+
 # Ignore Byebug command history file.
 .byebug_history
 
