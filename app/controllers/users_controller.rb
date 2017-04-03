@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @date.strftime("%B %d, %Y")
     @date = @date.strftime("%B %Y")
 
-    if @user.affiliation.empty?
+    if @user.affiliation.length == 0
       @affil = "No Affiliation"
     else
       @affil = @user.affiliation
