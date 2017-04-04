@@ -10,6 +10,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @date = @user.created_at
+    @date.strftime("%B %d, %Y")
+    @date = @date.strftime("%B %Y")
+
+    @affil = @user.affiliation.to_s
+    if @affil.empty?
+      @affil = "No Affiliation"
+    else
+      @affil = @user.affiliation
+    end
   end
 
   def search

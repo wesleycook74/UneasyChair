@@ -31,6 +31,7 @@ class ConferencesController < ApplicationController
   # POST /conferences.json
   def create
     @user = current_user
+
     @conference = @user.conferences.build(conference_params)
     @conference.tracks.build(name: 'Main')
     respond_to do |format|

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h4 class="section-title">Paper</h4>
 <p>
   <strong>Title:</strong>
   <%= @paper.title %>
@@ -11,7 +11,10 @@
   <%=  number_with_precision(@total, :precision => 2)%>
 
 </p>
-
+<p>
+  <strong>Abstract:</strong>
+  <%= @paper.abstract %>
+</p>
 
 <p>
   <strong>Author:</strong>
@@ -30,11 +33,47 @@
 <p>
   <%= link_to "Download A Copy", @paper.attachment_url %>
 </p>
-<p>
-<H3>Reviews</H3>
-<%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
-            :action => "Create", :class => "btn btn-primary btn-sm active"%>
 
+<p>
+  <% @user = current_user %>
+  <% @roles = @user.user_roles %>
+
+    <% if @roles.includes("chair") %>
+
+
+    <%= form_for(@paper) do |f| %>
+          <% if @paper.accepted.equal?(false) %>
+              <%= f.hidden_field :accepted, value: true %>
+              <%= f.submit 'Approve' %>
+          <% else %>
+              <%= f.hidden_field :accepted, value: false %>
+              <%= f.submit 'Un-Approve' %>
+          <% end %>
+    <% end %>
+
+
+     <% end %>
+
+
+</p>
+
+<p>
+<h4>Reviews: </h4>
+<div>
+  <table>
+    <tr>
+      <td>
+        <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
+            :action => "Create", :class => "btn btn-primary btn-sm active"%>
+      </td>
+      <td>
+        <% if @paper.reviews.size < 3 %>
+            <p>(This paper requires more reviews.)</p>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>
 </p>
 <table class="table table-hover">
   <th><td><strong>Score</strong></td><td><strong>Date</strong></td><td><strong>View</strong></td></th>

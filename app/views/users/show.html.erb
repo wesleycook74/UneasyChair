@@ -1,106 +1,111 @@
-<div class="container">
-  <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-              <h1>Hello <%= @user.name %></h1>
-        </div>
-        <div class="col-md-4"></div>
+<div class="col-md-2">
+  <br />
+  <div class = "well">
+    <img src="<%= asset_path( 'identicon.png' ) %>" width="250" height="250" alt="">
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Info</h3>
     </div>
+    <div class="panel-body">
+      <h4><%=@user.username%></h4>
+      <h6><span class="glyphicon glyphicon-map-marker"></span> <%=@affil%></h6>
+      <h6><span class="glyphicon glyphicon-calendar"></span> Joined <%=@date%></h6>
+    </div>
+  </div>
 </div>
 
-<%if @user_roles.empty? && @user.conferences.empty? && @user.papers.empty?%>
-    <div class="container">
-        <H4>
-        There's nothing to show here.
-        You're not involved with any conferences yet! :(
-        </H4>
-    </div>
-<%end%>
-<div class="container">
+<div class="col-md-9">
+
+  <%if @user_roles.empty? && @user.conferences.empty? && @user.papers.empty?%>
+      <div class="container">
+          <h4>You're not involved with any conferences yet! :(</h4>
+      </div>
+  <%end%>
+  <div>
     <%if !@user_roles.empty?%>
-        <H3>Conferences You Joined </H3>
-        <table class="table table-hover">
-
-            <% @user_roles.each do |user_role| %>
-                <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                    <td class="list_description">
-                        <dl>
-                            <dt><%= user_role.track.conference.name%></dt>
-                        </dl>
-                    </td>
-                    <td class="list_description">
-                        <dl>
-                            <dt><%= user_role.track.name %></dt>
-                        </dl>
-                    </td>
-                    <td class="list_description">
-                        <dl>
-                            <dt><%= user_role.role %></dt>
-                        </dl>
-                    </td>
-                    <td class="list_actions">
-                        <%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %>
-                    </td>
-                </tr>
-            <% end %>
-        </table>
+      <H3>Conferences You Joined </H3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Conference</th>
+            <th>Track</th>
+            <th>Role</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_roles.each do |user_role| %>
+          <tr>
+            <td><%= user_role.track.conference.name %></td>
+            <td><%= user_role.track.name %></td>
+            <td><%= user_role.role %></td>
+            <%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     <%end%>
-</div>
+  </div>
 
-<div class="container">
+  <div>
     <%if !@user.conferences.empty?%>
-    <H3>Conferences You Own</H3>
-    <table class="table table-hover">
-
-        <% @user.conferences.each do |conference| %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td class="list_description">
-                    <dl>
-                        <dt><%= conference.name%></dt>
-                    </dl>
-                </td>
-                <td class="list_actions">
-                    <%= link_to 'Go to', conference_path(conference) %>
-                </td>
-            </tr>
-        <% end %>
-    </table>
+      <H3>Conferences You Own </H3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Conference</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.conferences.each do |conference| %>
+          <tr>
+            <td><%= conference.name %></td>
+            <td><%= link_to 'Go to', conference_path(conference) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     <%end%>
     <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
-</div>
+  </div>
 
-<div class="container">
+  <div>
     <%if !@user.papers.empty?%>
-    <H3>Your Contributions</H3>
-    <table class="table table-hover">
-
-        <% @user.papers.each do |paper| %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td class="list_description">
-                    <dl>
-                        <dt><%= paper.title%></dt>
-                    </dl>
-                </td>
-                <td class="list_description">
-                    <dl>
-                        <dt><%= paper.track.name%></dt>
-                    </dl>
-                </td>
-                <td class="list_actions">
-                    <%= link_to 'Go to', paper_path(paper) %>
-                </td>
-            </tr>
-        <% end %>
-    </table>
+      <H3>Your Contributions </H3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Conference</th>
+            <th>Track</th>
+            <th>Title</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.papers.each do |paper| %>
+          <tr>
+            <td><%= paper.track.conference.name %></td>
+            <td><%= paper.track.name %></td>
+            <td><%= paper.title %></td>
+            <td><%= link_to 'Go to', paper_path(paper) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     <%end%>
-</div>
+  </div>
 
-<h2>Your Contacts (temporary code holder)</h2>
-<ul>
-  <% for connection in @user.connections %>
-  <li>
-    <%= h connection.contact.name %>
-    (<%= link_to "remove", connection, :method => :delete %>)
-  </li>
-  <% end %>
-</ul>
+  <h2>Your Contacts (temporary code holder)</h2>
+  <ul>
+    <% for connection in @user.connections do %>
+    <li>
+      <%= connection.contact.name %>
+      (<%= link_to "remove", connection, :method => :delete %>)
+    </li>
+    <% end %>
+  </ul>
+</div>

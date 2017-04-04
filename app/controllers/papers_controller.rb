@@ -73,7 +73,7 @@ class PapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
-      params.require(:paper).permit(:title, :attachment, :author, :track_id, :accepted)
+      params.require(:paper).permit(:title, :abstract, :attachment, :author, :track_id, :accepted)
     end
 
     def average_score

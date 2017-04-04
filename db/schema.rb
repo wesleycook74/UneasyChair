@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170404180502) do
     t.string   "title"
     t.integer  "track_id"
     t.integer  "user_id"
+    t.string   "abstract"
     t.index ["track_id"], name: "index_papers_on_track_id"
     t.index ["user_id"], name: "index_papers_on_user_id"
   end
