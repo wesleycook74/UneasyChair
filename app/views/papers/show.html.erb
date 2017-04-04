@@ -11,7 +11,10 @@
   <%=  number_with_precision(@total, :precision => 2)%>
 
 </p>
-
+<p>
+  <strong>Abstract:</strong>
+  <%= @paper.abstract %>
+</p>
 
 <p>
   <strong>Author:</strong>
@@ -31,7 +34,12 @@
   <%= link_to "Download A Copy", @paper.attachment_url %>
 </p>
 <p>
-<H3>Reviews</H3>
+
+<% if @paper.reviews.size < 3 %>
+    <h3>Reviews: </h3> <p> (This paper needs more reviews! Please leave a review.) </p>
+<% else %>
+    <h3>Reviews:</h3>
+<% end %>
 <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
             :action => "Create", :class => "btn btn-primary btn-sm active"%>
 
