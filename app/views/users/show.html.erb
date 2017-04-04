@@ -69,8 +69,8 @@
           <% end %>
         </tbody>
       </table>
-      <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
     <%end%>
+    <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
   </div>
 
   <div>
@@ -109,30 +109,3 @@
     <% end %>
   </ul>
 </div>
-
-<!--
-<div>
-    <%if !@user.papers.empty?%>
-    <H3>Your Contributions</H3>
-    <table class="table table-hover">
-        <% @user.papers.each do |paper| %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td class="list_description">
-                    <dl>
-                        <dt><%= paper.title%></dt>
-                    </dl>
-                </td>
-                <td class="list_description">
-                    <dl>
-                        <dt><%= paper.track.name%></dt>
-                    </dl>
-                </td>
-                <td class="list_actions">
-                    <%= link_to 'Go to', paper_path(paper) %>
-                </td>
-            </tr>
-        <% end %>
-    </table>
-    <%end%>
-</div>
--->
