@@ -42,7 +42,7 @@
             <td><%= user_role.track.conference.name %></td>
             <td><%= user_role.track.name %></td>
             <td><%= user_role.role %></td>
-            <%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %>
+            <td><%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %></td>
           </tr>
           <% end %>
         </tbody>
