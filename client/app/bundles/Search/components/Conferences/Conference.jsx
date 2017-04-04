@@ -1,6 +1,6 @@
 import React from 'react';
 
-const conference = React.createClass ({
+const Conference = React.createClass ({
   propTypes: {
     name: React.PropTypes.string,
     acronym: React.PropTypes.string
@@ -23,4 +23,4 @@ const conference = React.createClass ({
   }
 });
 
-export default conference;
+export default Conference;
