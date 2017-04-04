@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    users = User.where("name LIKE '%#{params[:query]}%'")
+    users = User.where("username LIKE '%#{params[:query]}%'")
     render json: users
   end
 
