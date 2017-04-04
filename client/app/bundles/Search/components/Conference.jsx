@@ -14,7 +14,7 @@ const conference = React.createClass ({
           {this.props.conference.name}
             <div id={this.props.conference.id} className="accordian-body collapse">
               <br></br>
-              hi
+              {this.props.conference.description}
             </div>  
         </td>
       </tr>
