@@ -10,6 +10,21 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @date = @user.created_at
+    @date.strftime("%B %d, %Y")
+    @date = @date.strftime("%B %Y")
+
+    @affil = @user.affiliation.to_s
+    if @affil.empty?
+      @affil = "No Affiliation"
+    else
+      @affil = @user.affiliation
+    end
+  end
+
+  def search
+    users = User.where("name LIKE '%#{params[:query]}%'")
+    render json: users
   end
 
   # GET /users/new
@@ -70,7 +85,7 @@ class UsersController < ApplicationController
     def set_user_roles
       @user_roles = @user.user_roles
     end
-    
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

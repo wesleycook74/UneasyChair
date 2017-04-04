@@ -49,7 +49,7 @@ const Conferences = React.createClass ({
         <table className="table table-hover" width="auto">
           <thead>
             <tr>
-              <th className="col-sm-2">Name</th>                   
+              <th className="col-sm-2"><h3><strong>Name</strong></h3></th>                   
             </tr>
           </thead>
           <tbody>

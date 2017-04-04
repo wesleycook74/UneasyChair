@@ -17,12 +17,15 @@ class UserRolesController < ApplicationController
   def create
     @user = current_user
     @track = Track.find(params[:track_id])
+    @request = Request.find(params[:request_id])
     @user_role = @track.user_roles.build(user_role_params.merge(:user_id => @user.id))
+
     set_track
     respond_to do |format|
       if @user_role.save
         format.html { redirect_to @track, notice: 'User role was successfully created.' }
         format.json { render :show, status: :created, location: @user_role }
+        @request.destroy
       else
         format.html { render :new }
         format.json { render json: @user_role.errors, status: :unprocessable_entity }
@@ -70,5 +73,5 @@ class UserRolesController < ApplicationController
     def set_track
       @track = @user_role.track
     end
-    
+
 end

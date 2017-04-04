@@ -12,11 +12,19 @@ const conference = React.createClass ({
   },
 
   render: function() {
+
     return(
-      <tr className="entry" onClick={this.handleViewConference}>    
-        <td>{this.props.conference.name}</td>
+      <tr data-toggle="collapse" data-target={"#" + this.props.conference.id} onClick={this.handleViewConference}>    
+        <td>
+          {this.props.conference.name}
+            <div id={this.props.conference.id} className="accordian-body collapse">
+              <br></br>
+              hi
+            </div>  
+        </td>
       </tr>
-    )
+      
+    );
   }
 });
 

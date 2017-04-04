@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330024626) do
+ActiveRecord::Schema.define(version: 20170401155301) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170330024626) do
     t.string   "acronym"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_conferences_on_user_id"
+  end
+
+  create_table "connections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "papers", force: :cascade do |t|
@@ -32,6 +39,15 @@ ActiveRecord::Schema.define(version: 20170330024626) do
     t.integer  "user_id"
     t.index ["track_id"], name: "index_papers_on_track_id"
     t.index ["user_id"], name: "index_papers_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "receiver_id"
+    t.string   "role"
+    t.integer  "track_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -79,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170330024626) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
