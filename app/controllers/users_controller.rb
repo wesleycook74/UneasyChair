@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :set_user_role]
   before_action :set_user_roles, only: [:show, :edit, :update, :destroy]
   # GET /users
   # GET /users.json
@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     users = User.where("name LIKE '%#{params[:query]}%'")
     render json: users
   end
+
+  def set_user_role
+    @track = Track.find(params[:track_id])
+    @role = UserRole.find_by(user_id: @user.id, track_id: @track.id)
+    session[:user_role] = @role.role
+    redirect_to @track
+  end
+  
 
   # GET /users/new
   def new
@@ -69,7 +77,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = current_user
     end
 
     def set_user_roles

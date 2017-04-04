@@ -39,7 +39,7 @@
                         </dl>
                     </td>
                     <td class="list_actions">
-                        <%= link_to 'Go to', track_path(user_role.track) %>
+                        <%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %>
                     </td>
                 </tr>
             <% end %>

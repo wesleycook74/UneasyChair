@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'users/search'
 
+  get 'users/set_user_role'
+
   get 'uploads/index'
 
   devise_for :users
