@@ -43,7 +43,7 @@
             <td><%= user_role.track.name %></td>
             <td><%= user_role.role %></td>
             <td><%= link_to 'Go to', track_path(user_role.track) %></td>
-          </td>
+          </tr>
           <% end %>
         </tbody>
       </table>
@@ -65,7 +65,7 @@
           <tr>
             <td><%= conference.name %></td>
             <td><%= link_to 'Go to', conference_path(conference) %></td>
-          </td>
+          </tr>
           <% end %>
         </tbody>
       </table>
@@ -92,7 +92,7 @@
             <td><%= paper.track.name %></td>
             <td><%= paper.title %></td>
             <td><%= link_to 'Go to', paper_path(paper) %></td>
-          </td>
+          </tr>
           <% end %>
         </tbody>
       </table>
@@ -101,7 +101,7 @@
 
   <h2>Your Contacts (temporary code holder)</h2>
   <ul>
-    <% for connection in @user.connections %>
+    <% for connection in @user.connections do %>
     <li>
       <%= connection.contact.name %>
       (<%= link_to "remove", connection, :method => :delete %>)

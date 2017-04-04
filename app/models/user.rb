@@ -1,10 +1,8 @@
 class User < ApplicationRecord
-  enum role: [:user,:chair,:pcChair, :comitteeMember, :admin]
-  after_initialize :set_default_role, :if => :new_record?
 
-  def set_default_role
-    self.role ||= :user
-  end
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,4 +17,5 @@ class User < ApplicationRecord
   has_many :contacts, through: :connections
 
   validates_uniqueness_of :username
+
 end

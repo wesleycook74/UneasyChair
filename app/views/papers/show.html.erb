@@ -33,8 +33,31 @@
 <p>
   <%= link_to "Download A Copy", @paper.attachment_url %>
 </p>
-<p>
 
+<p>
+  <% @user = current_user %>
+  <% @roles = @user.user_roles %>
+
+    <% if @roles.includes("chair") %>
+
+
+    <%= form_for(@paper) do |f| %>
+          <% if @paper.accepted.equal?(false) %>
+              <%= f.hidden_field :accepted, value: true %>
+              <%= f.submit 'Approve' %>
+          <% else %>
+              <%= f.hidden_field :accepted, value: false %>
+              <%= f.submit 'Un-Approve' %>
+          <% end %>
+    <% end %>
+
+
+     <% end %>
+
+
+</p>
+
+<p>
 <h4>Reviews: </h4>
 <div>
   <table>

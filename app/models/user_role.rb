@@ -4,4 +4,5 @@ class UserRole < ApplicationRecord
 
 
   # has_many :requests
+
 end

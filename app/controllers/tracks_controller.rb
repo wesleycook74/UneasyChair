@@ -41,7 +41,8 @@ class TracksController < ApplicationController
     # @track = Track.new(track_params)
     @conference = Conference.find(params[:conference_id])
     @track = @conference.tracks.build(track_params)
-    
+    @user = current_user
+
     respond_to do |format|
       if @track.save
         format.html { redirect_to @track, notice: 'Track was successfully created.' }
