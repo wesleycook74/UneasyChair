@@ -18,6 +18,8 @@ public/uploads/paper/*
 !/log/.keep
 !/tmp/.keep
 
+.idea
+
 # Generated js bundles
 /app/assets/webpack/*
 

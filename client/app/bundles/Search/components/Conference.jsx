@@ -6,11 +6,15 @@ const conference = React.createClass ({
     acronym: React.PropTypes.string
   },
 
+    handleViewConference: function(e) {   
+      // this.props.handleAddToCart(this.props.book.id); 
+      console.log(this.props.conference)
+  },
+
   render: function() {
     return(
-      <tr className="entry">    
+      <tr className="entry" onClick={this.handleViewConference}>    
         <td>{this.props.conference.name}</td>
-        <td>{this.props.conference.acronym}</td>
       </tr>
     )
   }

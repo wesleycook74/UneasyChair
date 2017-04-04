@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'uploads/create'
 
+  get '/conferences/search'
+
   get 'uploads/index'
 
   devise_for :users
