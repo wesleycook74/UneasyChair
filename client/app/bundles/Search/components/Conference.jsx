@@ -6,15 +6,10 @@ const conference = React.createClass ({
     acronym: React.PropTypes.string
   },
 
-    handleViewConference: function(e) {   
-      // this.props.handleAddToCart(this.props.book.id); 
-      console.log(this.props.conference)
-  },
-
   render: function() {
 
     return(
-      <tr data-toggle="collapse" data-target={"#" + this.props.conference.id} onClick={this.handleViewConference}>    
+      <tr data-toggle="collapse" data-target={"#" + this.props.conference.id}>    
         <td>
           {this.props.conference.name}
             <div id={this.props.conference.id} className="accordian-body collapse">
