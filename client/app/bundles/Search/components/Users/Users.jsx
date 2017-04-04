@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactOnRails from 'react-on-rails';
 import axios from 'axios';
 import User from './User';
+import SearchBar from './SearchBar'
 
 // import SearchBar from './SearchBar'
 
@@ -18,7 +19,7 @@ const Users = React.createClass ({
 		axios.get('/users')
 			.then(function (response) {
 				console.log(response.data);
-				self.setState({ users: response.data })
+				self.setState({ users: response.data.users })
         
 			})
 			.catch(function (error) {
@@ -62,11 +63,15 @@ const Users = React.createClass ({
     return (
       <div className="parent">
         <div className="row">
+          <div className="col-sm-4">
+              <SearchBar handleSearch={this.handleSearch} />
+          </div>
 				</div>
         <table className="table table-hover" width="auto">
           <thead>
             <tr>
               <th>UserName</th>
+              <th>Name</th>
               <th>Affiliation</th>
               <th colSpan="3"></th>
             </tr>

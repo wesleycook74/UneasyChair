@@ -8,7 +8,7 @@ const SearchBar = React.createClass({
 
     var self = this;
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.get('/conferences/search', {params: {query: query }})
+    axios.get('/users/search', {params: {query: query }})
       .then(function (response) {
         console.log(response.data);
         self.props.handleSearch(response.data);
@@ -24,7 +24,7 @@ const SearchBar = React.createClass({
       <input onChange={this.handleSearch}
              type="text"
              className="form-control"
-             placeholder="Search by conference name"
+             placeholder="Search by UserName..."
              ref="query" />
     )
   }

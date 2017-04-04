@@ -14,6 +14,7 @@ const User = React.createClass ({
 
     return(
       <tr>   
+        <td> {this.props.user.username} </td>
         <td> {this.props.user.name} </td>
         <td> {this.props.user.affiliation} </td>
         <td>
