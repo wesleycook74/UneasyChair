@@ -16,11 +16,9 @@
     <a class="navbar-brand" href="/welcome/index">
       <img src="<%= asset_path( 'logo.png' ) %>" width="30" height="30" alt="">
     </a>
-    <form class="navbar-form navbar-left">
-      <div class="form-group">
-        <input type="text" class="form-control search" href="/search" placeholder="Search Uneasy Chair">
-      </div>
-    </form>
+    <%= form_tag(search_index_path, :method => 'get', :class => "navbar-form navbar-left", :authenticity_token => false)  do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Uneasy Chair...", :class => "form-control search" %>
+    <% end %>
 
     <!-- notification bell dropdown -->
     <ul class="nav navbar-nav navbar-right">
