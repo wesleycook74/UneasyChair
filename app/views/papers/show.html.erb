@@ -38,10 +38,8 @@
   <% @user = current_user %>
   <% @roles = @user.user_roles %>
 
-    <% if @roles.includes("chair") %>
-
-
-    <%= form_for(@paper) do |f| %>
+  <% if @roles.includes("chair") %>
+      <%= form_for(@paper) do |f| %>
           <% if @paper.accepted.equal?(false) %>
               <%= f.hidden_field :accepted, value: true %>
               <%= f.submit 'Approve' %>
@@ -49,10 +47,8 @@
               <%= f.hidden_field :accepted, value: false %>
               <%= f.submit 'Un-Approve' %>
           <% end %>
-    <% end %>
-
-
-     <% end %>
+      <% end %>
+  <% end %>
 
 
 </p>
