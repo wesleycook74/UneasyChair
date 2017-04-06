@@ -32,7 +32,6 @@ const Users = React.createClass ({
 
 		axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
     axios.defaults.headers.common['X-CSRF-Token'] =  ReactOnRails.authenticityToken();
-    var header = ReactOnRails.authenticityHeaders(header);
 		axios.post('/connections', {contact_id: user.id}, )
 			.then(function (response) {
 				console.log(response);
@@ -52,8 +51,6 @@ const Users = React.createClass ({
   render() {
     var users = [];
 
-    console.log(this.state.users)
-
     this.state.users.forEach(function(user) {
       users.push(<User user={user}
                                     key={'user'+ user.id}
@@ -67,7 +64,7 @@ const Users = React.createClass ({
               <SearchBar handleSearch={this.handleSearch} />
           </div>
 				</div>
-        <table className="table table-hover" width="auto">
+        <table className="table " width="auto">
           <thead>
             <tr>
               <th>UserName</th>

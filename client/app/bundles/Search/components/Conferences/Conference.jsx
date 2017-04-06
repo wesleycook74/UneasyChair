@@ -6,6 +6,10 @@ const Conference = React.createClass ({
     acronym: React.PropTypes.string
   },
 
+    handleView: function(e) {   
+      window.location.replace('/conferences/' + this.props.conference.id );
+  },
+
   render: function() {
 
     return(
@@ -17,6 +21,11 @@ const Conference = React.createClass ({
               {this.props.conference.description}
             </div>  
         </td>
+          <td>
+            <a className="btn btn-primary btn-sm" onClick={this.handleView}>
+              Go to
+            </a>
+        </td> 
       </tr>
       
     );

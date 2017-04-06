@@ -24,18 +24,32 @@ const Conferences = React.createClass ({
 			});
   },
 
-
 	handleSearch: function(conferences) {
 		this.setState({ conferences: conferences });
 	},
 
+  handleView: function(conference){
+		var self = this;
+
+		axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.defaults.headers.common['X-CSRF-Token'] =  ReactOnRails.authenticityToken();
+		axios.get('/conferences/' + conference.id )
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert('Cannot sort events: ', error);
+		  });
+
+  },
+
   render() {
     var conferences = [];
 
-    console.log(this.state.conferences)
-
     this.state.conferences.forEach(function(conference) {
       conferences.push(<Conference conference={conference}
+                                    handleView={this.handleView}
                                     key={'conference'+ conference.id}/>);
     }.bind(this));
 
@@ -49,12 +63,12 @@ const Conferences = React.createClass ({
         <table className="table table-hover" width="auto">
           <thead>
             <tr>
-              <th className="col-sm-2"><h3><strong>Name</strong></h3></th>                   
+              <th className="col-sm-6">Name</th>                   
             </tr>
           </thead>
           <tbody>
             {conferences}
-          </tbody>
+          </tbody>  
         </table>
       </div>
     );

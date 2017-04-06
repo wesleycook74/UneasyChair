@@ -10,7 +10,6 @@ const SearchBar = React.createClass({
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
     axios.get('/users/search', {params: {query: query }})
       .then(function (response) {
-        console.log(response.data);
         self.props.handleSearch(response.data);
       })
       .catch(function (error) {
