@@ -7,12 +7,10 @@ end
 
 gem 'faker'
 
-
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 gem 'fog'
 
 gem 'aws-sdk', '~> 2'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

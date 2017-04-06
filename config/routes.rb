@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'search/index'
+
   resources :user_roles, only: [:new, :create, :edit, :destroy]
   get 'uploads/new'
+
+  resources :search, only: [:index]
 
   get 'uploads/create'
 

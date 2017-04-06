@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     if user_signed_in?
-      redirect_to current_user
+      redirect_to "/users/you"
     end
   end
 
