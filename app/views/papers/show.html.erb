@@ -1,3 +1,4 @@
+<%=session[:user_role]%>
 <p id="notice"><%= notice %></p>
 <h4 class="section-title">Paper</h4>
 <p>
@@ -36,7 +37,7 @@
 
 <p>
   <% @user = current_user %>
-  <% @roles = @user.user_roles %>
+  <% @roles = session[:user_role]%>
 
   <% if @roles == "chair" %>
       <%= form_for(@paper) do |f| %>
