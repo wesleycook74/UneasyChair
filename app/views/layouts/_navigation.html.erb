@@ -10,14 +10,17 @@
     </button>
   </div>
 
-  <!-- search bar area -->
+ 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <div class="col-md-1"></div>
     <a class="navbar-brand" href="/welcome/index">
       <img src="<%= asset_path( 'logo.png' ) %>" width="30" height="30" alt="">
     </a>
-    <%= form_tag(search_index_path, :method => 'get', :class => "navbar-form navbar-left", :authenticity_token => false)  do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search Uneasy Chair...", :class => "form-control search" %>
+     <!-- search bar area -->
+     <% if controller_name != 'search' %>
+      <%= form_tag(search_index_path, :method => 'get', :class => "navbar-form navbar-left", :authenticity_token => false)  do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Uneasy Chair...", :class => "form-control search" %>
+      <% end %>
     <% end %>
 
     <!-- notification bell dropdown -->

@@ -56,7 +56,7 @@ const Conferences = React.createClass ({
     return (
       <div className="parent">
         <div className="row">
-					<div className="col-sm-4">
+					<div className="col-sm-8">
 						<SearchBar handleSearch={this.handleSearch} />
 					</div>
 				</div>
