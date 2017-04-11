@@ -6,25 +6,18 @@ import SearchBar from './SearchBar'
 const Conferences = React.createClass ({
   getInitialState: function() {
         return { 
-          conferences: []
+          conferences: [],
+          initialSearch: this.props.initialSearch
         };
   },  
 
   componentDidMount: function() {
     var self = this;
 
-		axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-		axios.get('/conferences')
-			.then(function (response) {
-				console.log(response.data);
-				self.setState({ conferences: response.data.conferences })
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
   },
 
 	handleSearch: function(conferences) {
+    console.log(conferences)
 		this.setState({ conferences: conferences });
 	},
 
@@ -45,6 +38,7 @@ const Conferences = React.createClass ({
   },
 
   render() {
+    
     var conferences = [];
 
     this.state.conferences.forEach(function(conference) {
@@ -52,12 +46,12 @@ const Conferences = React.createClass ({
                                     handleView={this.handleView}
                                     key={'conference'+ conference.id}/>);
     }.bind(this));
-
+    console.log(this.props.initialSearch)
     return (
       <div className="parent">
         <div className="row">
 					<div className="col-sm-8">
-						<SearchBar handleSearch={this.handleSearch} />
+						<SearchBar handleSearch={this.handleSearch} initialSearch={this.state.initialSearch} />
 					</div>
 				</div>
         <table className="table table-hover" width="auto">
