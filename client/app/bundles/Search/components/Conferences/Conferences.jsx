@@ -16,9 +16,10 @@ const Conferences = React.createClass ({
 
   },
 
-	handleSearch: function(conferences) {
+	handleSearch: function(conferences, currentSearch) {
     console.log(conferences)
 		this.setState({ conferences: conferences });
+    this.props.handleSearch(currentSearch)
 	},
 
   handleView: function(conference){

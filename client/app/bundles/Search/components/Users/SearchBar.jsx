@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 const SearchBar = React.createClass({
+  componentDidMount: function() {
+		console.log(this.props)
+		ReactDOM.findDOMNode(this.refs.query).value = this.props.initialSearch;
+		this.handleSearch()
+		var self = this;
+	},
+    
   handleSearch: function() {
     var query = ReactDOM.findDOMNode(this.refs.query).value;
 
@@ -10,7 +17,7 @@ const SearchBar = React.createClass({
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
     axios.get('/users/search', {params: {query: query }})
       .then(function (response) {
-        self.props.handleSearch(response.data);
+        self.props.handleSearch(response.data, query);
       })
       .catch(function (error) {
         console.log(error);

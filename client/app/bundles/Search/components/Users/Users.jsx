@@ -10,21 +10,11 @@ const Users = React.createClass ({
   getInitialState: function() {
         return { 
           users: [],
+          initialSearch: this.props.initialSearch
         };
   },  
 
   componentDidMount: function() {
-    var self = this;
-    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-		axios.get('/users')
-			.then(function (response) {
-				console.log(response.data);
-				self.setState({ users: response.data.users })
-        
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
   },
 
   handleAddToContacts: function(user){
@@ -44,8 +34,9 @@ const Users = React.createClass ({
   },
 
 
-	handleSearch: function(users) {
+	handleSearch: function(users, currentSearch) {
 		this.setState({ users: users });
+    this.props.handleSearch(currentSearch)
 	},
 
   render() {
@@ -56,12 +47,12 @@ const Users = React.createClass ({
                                     key={'user'+ user.id}
                                     handleAddToContacts={this.handleAddToContacts}/>);
     }.bind(this));
-
+    console.log(this.state.initialSearch)
     return (
       <div className="parent">
         <div className="row">
           <div className="col-sm-4">
-              <SearchBar handleSearch={this.handleSearch} />
+              <SearchBar handleSearch={this.handleSearch} initialSearch={this.state.initialSearch}/>
           </div>
 				</div>
         <table className="table " width="auto">

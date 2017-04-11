@@ -19,10 +19,13 @@ const Search = React.createClass ({
 
 	handleSelectSearch: function(searchParam){
 		this.setState({ searchParam: searchParam })
-		console.log(this.state.searchParam);
 	},
 
-  render() {
+	handleSearch: function(currentSearch) {
+		this.setState({currentSearch: currentSearch})
+	},
+
+  	render() {
 	  	// This if block is needed since render is called before componentDidMount which sets currentSearch
 	  	if(this.state.currentSearch == null) {
 			console.log("made it")
@@ -37,7 +40,7 @@ const Search = React.createClass ({
 							<li onClick={() => this.handleSelectSearch("conferences")}><a>Conferences</a></li>
 						</ul>
 					</div>
-					<Conferences initialSearch={this.props.search} />
+					<Conferences initialSearch={this.props.search} handleSearch={this.handleSearch} />
 				</div>
 			);
 		}
@@ -46,35 +49,32 @@ const Search = React.createClass ({
 			return (
 				<div className="parent">
 					<div className="btn-group">
-						<button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Search type <span className="caret"></span>
+						<button type="button" className="btn btn-primary" onClick={() => this.handleSelectSearch("conferences")}>
+							Conferences
 						</button>
-						<ul className="dropdown-menu">
-							<li onClick={() => this.handleSelectSearch("users")}><a>Users</a></li>
-							<li onClick={() => this.handleSelectSearch("conferences")}><a>Conferences</a></li>
-						</ul>
+						<button type="button" className="btn btn-secondary" onClick={() => this.handleSelectSearch("users")}>
+							Users
+						</button>
 
 
 					</div>
-					<Conferences initialSearch={this.state.currentSearch} />
+					<Conferences initialSearch={this.state.currentSearch} handleSearch={this.handleSearch}/>
 				</div>
 			);
 		}
 		else {
+			console.log(this.state.currentSearch)
 			return (
 				<div className="parent">
 					<div className="btn-group">
-						<button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Search type <span className="caret"></span>
+						<button type="button" className="btn btn-secondary" onClick={() => this.handleSelectSearch("conferences")}>
+							Conferences
 						</button>
-						<ul className="dropdown-menu">
-							<li onClick={() => this.handleSelectSearch("users")}><a>Users</a></li>
-							<li onClick={() => this.handleSelectSearch("conferences")}><a>Conferences</a></li>
-						</ul>
-
-
+						<button type="button" className="btn btn-primary" onClick={() => this.handleSelectSearch("users")}>
+							Users
+						</button>
 					</div>
-					<Users />
+					<Users initialSearch={this.state.currentSearch}  handleSearch={this.handleSearch}/>
 				</div>
 			);
 		}
