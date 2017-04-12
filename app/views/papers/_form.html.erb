@@ -31,11 +31,11 @@
 
 
   <div class="field">
-    <%= f.label :accepted %>
-    <%= f.check_box :accepted %>
+
+    <%= f.hidden_field :accepted, value: false %>
   </div>
 
   <div class="actions">
-    <%= f.button :submit , name: "track_id", value: params[:track_id], :class => "btn btn-primary btn-md active"%>
+    <%= f.button :submit,name: "track_id", value: params[:track_id], :class => "btn btn-primary btn-md active"%>
   </div>
 <% end %>
