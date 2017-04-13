@@ -94,6 +94,7 @@
       </tr>
   <% end %>
 </table>
-
-<%= link_to 'Edit', edit_paper_path(@paper) %> |
+<% if @paper.user.id == @user.id %>
+<%= link_to 'Edit', edit_paper_path(@paper) %>
+<% end %>
 <%= link_to 'Back', track_path(@paper.track), :class => "btn btn-primary btn-sm active" %>
