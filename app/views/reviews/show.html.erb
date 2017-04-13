@@ -39,6 +39,6 @@
 
 
 <% if @review.user_id == @user.id %>
-<%= link_to 'Edit', edit_review_path(@review) %>
+<%= link_to 'Edit', edit_review_path(@review), :class => "btn btn-primary btn-sm active"  %>
 <% end %>
 <%= link_to 'Back', paper_path(@review.paper_id), :class => "btn btn-primary btn-sm active" %>

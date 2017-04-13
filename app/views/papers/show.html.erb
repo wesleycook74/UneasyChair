@@ -60,8 +60,12 @@
   <table>
     <tr>
       <td>
+        <%  %>
+        <%  %>
+        <% if @paper.user.id != @user.id %>
         <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
             :action => "Create", :class => "btn btn-primary btn-sm active"%>
+        <% end %>
       </td>
       <td>
         <% if @paper.reviews.size < 3 %>
