@@ -33,7 +33,9 @@ class UsersController < ApplicationController
     session[:user_role] = @role.role
     redirect_to @track
   end
-  
+
+  def set_my_user_role
+  end
 
   # GET /users/new
   def new
@@ -93,6 +95,8 @@ class UsersController < ApplicationController
     def set_user_roles
       @user_roles = @user.user_roles
     end
+
+
 
 
     # Never trust parameters from the scary internet, only allow the white list through.

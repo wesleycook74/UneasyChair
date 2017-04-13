@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<%= @user = current_user  %>
+<% @paper = @review.paper  %>
+<%= @theUser = User.find_by(id: current_user)  %>
+
+
 <p>
   <strong>Score:</strong>
   <%= @review.score %>
@@ -11,8 +16,12 @@
 </p>
 
 <p>
+  <% @paper.author %>
+  <%= @theUser.name %>
+  <% if @paper.user.id != @user.id  %>
   <strong>Reviewer:</strong>
   <%= @review.reviewer %>
+  <% end %>
 </p>
 
 <p>
