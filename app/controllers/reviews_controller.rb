@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
   def create
     @user = current_user
     @paper = Paper.find(params[:paper_id])
-    @review = @paper.reviews.build(review_params)
+    @review = @paper.reviews.build(review_params.merge(:user_id => @user.id))
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }

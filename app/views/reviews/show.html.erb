@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<%= @user = current_user  %>
+<% @user = current_user  %>
 <% @paper = @review.paper  %>
-<%= @theUser = User.find_by(id: current_user)  %>
+
 
 
 <p>
@@ -16,8 +16,6 @@
 </p>
 
 <p>
-  <% @paper.author %>
-  <%= @theUser.name %>
   <% if @paper.user.id != @user.id  %>
   <strong>Reviewer:</strong>
   <%= @review.reviewer %>
@@ -39,6 +37,8 @@
   <%= @review.confidence %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %>
 
+<% if @review.user_id == @user.id %>
+<%= link_to 'Edit', edit_review_path(@review) %>
+<% end %>
 <%= link_to 'Back', paper_path(@review.paper_id), :class => "btn btn-primary btn-sm active" %>
