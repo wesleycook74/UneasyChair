@@ -1,0 +1,43 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Uneasy Chair" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Uneasy Chair" %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+  <%= render 'layouts/navigation' %>
+</header>
+<main role="main">
+<h3>Papers</h3>
+<h4>Approved:</h4>
+<table class="table table-hover">
+  <% @papers = @track.papers %>
+  <% @papers.each do |paper| %>
+      <% if paper.accepted.equal?(true) %>
+
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <td class="list_description">
+              <dl>
+                <dt><%= paper.title %></dt>
+              </dl>
+            </td>
+            <td class="list_description">
+              <dl>
+                <dt><%= paper.author %></dt>
+              </dl>
+            </td>
+            <td class="list_actions">
+              <%= link_to 'Show', paper %> |
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+
+</table>
+  <div class="container">
+    <%= link_to 'Submit Paper', new_paper_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
+  </div></main>
+</body>
