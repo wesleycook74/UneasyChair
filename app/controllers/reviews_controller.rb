@@ -29,11 +29,13 @@ class ReviewsController < ApplicationController
     @user = current_user
     @paper = Paper.find(params[:paper_id])
     @review = @paper.reviews.build(review_params.merge(:user_id => @user.id))
+    @paper.automatic_accept
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
+
         format.html { render :new }
         format.json { render json: @review.errors.full_messages, status: :unprocessable_entity }
       end

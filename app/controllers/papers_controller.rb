@@ -10,6 +10,7 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.json
   def show
+
   end
 
   # GET /papers/new
@@ -44,6 +45,7 @@ class PapersController < ApplicationController
   # PATCH/PUT /papers/1
   # PATCH/PUT /papers/1.json
   def update
+
     respond_to do |format|
       if @paper.update(paper_params)
         format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
@@ -79,7 +81,7 @@ class PapersController < ApplicationController
     def average_score
       @total = 0;
       @paper.reviews.each do |review|
-        @total = @total + review.score
+        @total = @total + 1
       end
     end
 end
