@@ -1,0 +1,32 @@
+<div  id = "current_tab">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><%= link_to 'Joined', show_joined_path, :remote => true %></li>
+    <li role="presentation"><%= link_to 'Owned', show_owned_path, :remote => true %></li>
+    <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
+    <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
+  </ul>
+
+  <%if !@user_roles.empty?%>
+    <H3>Conferences You Joined </H3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Conference</th>
+          <th>Track</th>
+          <th>Role</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_roles.each do |user_role| %>
+        <tr>
+          <td><%= user_role.track.conference.name %></td>
+          <td><%= user_role.track.name %></td>
+          <td><%= user_role.role %></td>
+          <td><%= link_to 'Go to', users_set_user_role_path(@user, track_id: user_role.track) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%end%>
+</div>

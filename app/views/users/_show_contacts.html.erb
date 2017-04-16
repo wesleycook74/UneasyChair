@@ -1,0 +1,18 @@
+<!-- Tab 4 -->
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Joined', show_joined_path, :remote => true %></li>
+  <li role="presentation"><%= link_to 'Owned', show_owned_path, :remote => true %></li>
+  <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
+  <li role="presentation"  class="active"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
+</ul>
+
+<div id = "current_tab">
+  <h2>Your Contacts (temporary)</h2>
+  <ul>
+    <% for connection in @user.connections do %>
+    <li>
+      <%= connection.contact.username %>
+      (<%= link_to "remove", connection, :method => :delete %>)
+    </li>
+    <% end %>
+</div

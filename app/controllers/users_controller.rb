@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :set_user_role]
-  before_action :set_user_roles, only: [:show, :edit, :update, :destroy]
+  #before_action :set_user, only: [:show, :show_joined, :edit, :update, :destroy, :set_user_role]
+  #before_action :set_user_roles, only: [:show, :show_joined, :edit, :update, :destroy]
+  before_action :set_user
+  before_action :set_user_roles
+
   # GET /users
   # GET /users.json
   def index
@@ -20,7 +23,41 @@ class UsersController < ApplicationController
     else
       @affil = @user.affiliation
     end
+
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
   end
+
+  def show_joined
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_owned
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_contribute
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_contact
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
 
   def search
     users = User.where("username LIKE '%#{params[:query]}%'")

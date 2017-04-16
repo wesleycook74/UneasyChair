@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   resources :tracks
   resources :users
+  get "/show_joined" => 'users#show_joined', as: 'show_joined'
+  get "/show_owned" => 'users#show_owned', as: 'show_owned'
+  get "/show_contributed" => 'users#show_contributed', as: 'show_contributed'
+  get "/show_contacts" => 'users#show_contacts', as: 'show_contacts'
   resources :conferences
   resources :reviews
   resources :requests
