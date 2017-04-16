@@ -7,7 +7,7 @@
 </ul>
 
 <div id = "current_tab">
-  
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -22,8 +22,8 @@
         <tr>
           <td><img src="<%=connection.contact.profpic_url%>" width="50" height="50" alt=""></td>
           <td><%= connection.contact.username %></td>
-          <td><%= link_to 'Go to', user_path(connection.contact), :remote => false %></td>
-          <td><%= link_to "remove", connection, :method => :delete %></td>
+          <td><%= link_to 'Visit Page', user_path(connection.contact), :remote => false %></td>
+          <td><%= link_to "Remove Contact", connection, :method => :delete %></td>
         </tr>
         <% end %>
       </tbody>
