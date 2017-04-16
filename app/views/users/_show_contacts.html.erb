@@ -7,12 +7,25 @@
 </ul>
 
 <div id = "current_tab">
-  <h2>Your Contacts (temporary)</h2>
-  <ul>
-    <% for connection in @user.connections do %>
-    <li>
-      <%= connection.contact.username %>
-      (<%= link_to "remove", connection, :method => :delete %>)
-    </li>
-    <% end %>
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Img</th>
+          <th>Username</th>
+          <th>Link</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for connection in @user.connections do %>
+        <tr>
+          <td><img src="<%=connection.contact.profpic_url%>" width="50" height="50" alt=""></td>
+          <td><%= connection.contact.username %></td>
+          <td><%= link_to 'Go to', user_path(connection.contact), :remote => false %></td>
+          <td><%= link_to "remove", connection, :method => :delete %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div

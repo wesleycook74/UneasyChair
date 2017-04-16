@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @user_roles = @user.user_roles
     @date = @user.created_at
     @date.strftime("%B %d, %Y")
     @date = @date.strftime("%B %Y")
@@ -22,11 +24,6 @@ class UsersController < ApplicationController
       @affil = "No Affiliation"
     else
       @affil = @user.affiliation
-    end
-
-    respond_to do |format|
-      format.html
-      format.js {render layout: false} # Add this line to you respond_to block
     end
   end
 
