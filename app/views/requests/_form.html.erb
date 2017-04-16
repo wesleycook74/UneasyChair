@@ -11,16 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :role %>
-    <%= f.text_field :role %>
+  <div class="field row">
+    <div class="col-md-4">
+      <%= f.select(:role, UserRole::SELECTABLE_ROLE_TYPES, {:include_blank => 'Select a role'}, {class: "form-control"}) %>
+    </div>
 
   </div>
 
-  <div class="field">
+  <div class="field row">
     <!-- <%= f.text_field :receiver_id %> -->
-    <%= f.collection_select(:receiver_id, @contacts, :id, :username, :prompt => true) %>
-
+    <div class="col-md-4">
+    <%= f.collection_select(:receiver_id, @contacts, :id, :username, {prompt: "Choose contact"},{class: "form-control"}) %>
+    </div>
   </div>
 
   <%= f.hidden_field :track_id, :value => @track.id %>
