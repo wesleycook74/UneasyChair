@@ -49,8 +49,9 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @user = User.find(@request.user_id)
     @user.update_attribute :chairable, true
+    @request.destroy
 
-    format.html { redirect_to root_url}
+    format.html { redirect_to root_url, notice: 'User is chairable.' }
   end
 
   private
