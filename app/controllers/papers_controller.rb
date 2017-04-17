@@ -10,7 +10,7 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.json
   def show
-    @paper.automatic_accept
+
   end
 
   # GET /papers/new

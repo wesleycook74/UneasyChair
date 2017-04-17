@@ -8,10 +8,11 @@ class Paper < ApplicationRecord
   def automatic_accept
 
     if self.reviews.all.size > 2
-      self.accepted = true
-      @average_score = self.reviews.all.sum(:score).to_f / self.reviews.all.size
-      if @average_score > 1.4
-        self.accepted = true
+
+      @average_score = self.reviews.sum(:score).to_f / self.reviews.count
+      @average_confidence = self.reviews.sum(:confidence).to_f / self.reviews.count
+      if @average_score > 1.4 && @average_confidence > 2
+        self.update_attribute(:accepted, true)
       end
     end
   end

@@ -44,9 +44,7 @@
           <% if @paper.accepted.equal?(false) %>
               <%= f.hidden_field :accepted, value: true %>
               <%= f.submit 'Approve' %>
-          <% else %>
-              <%= f.hidden_field :accepted, value: false %>
-              <%= f.submit 'Un-Approve' %>
+
           <% end %>
       <% end %>
   <% end %>
