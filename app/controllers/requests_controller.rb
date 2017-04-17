@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     @receiver_id = request_params[:receiver_id]
     if UserRole.exists?(track_id: @track_id, user_id: @receiver_id)
       respond_to do |format|
-        format.html { redirect_to "/users/you", :flash => { :error => "User already exists in this track" } }
+        format.html { redirect_to "/tracks/"+@track_id, :flash => { :error => "User already exists in this track" } }
       end
     else
       @request = current_user.requests.build(request_params)
