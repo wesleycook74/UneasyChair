@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy, :add_user]
-
+  before_action :set_user_role, only: [:show]
   # GET /tracks
   # GET /tracks.json
   def index
@@ -22,13 +22,11 @@ class TracksController < ApplicationController
   def show
     @conference = @track.conference
     @user_roles = @track.user_roles
-     if session[:user_role].nil? && @conference.user_id != current_user.id
+     if @current_user_role.nil? && @conference.user_id != current_user.id
        render :partial => 'authorSubmitToTrack.html.erb'
      end
   end
-def authorSubmitToTrack
 
-end
   # GET /tracks/new
   def new
     @track = Track.new
@@ -77,15 +75,36 @@ end
   # DELETE /tracks/1
   # DELETE /tracks/1.json
   def destroy
-    @track.destroy
     @conference = @track.conference
-    respond_to do |format|
-      format.html { redirect_to @conference, notice: 'Track was successfully destroyed.' }
-      format.json { head :no_content }
+    if @conference.tracks.size < 2
+      respond_to do |format|
+        format.html { redirect_to @conference, :flash => {error: 'Cannot remove track: Conferences must have at least 1 track.' } }
+        format.json { head :no_content }
+      end
+    else
+      @track.destroy
+      @conference = @track.conference
+      respond_to do |format|
+        format.html { redirect_to @conference, notice: 'Track was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
     end
   end
 
   private
+
+    def set_user_role
+      @conference = @track.conference
+      if user_signed_in? 
+        if UserRole.exists?(track_id: @track.id, user_id: current_user.id )
+          @current_user_role = UserRole.where(track_id: @track.id, user_id: current_user.id ).first.role
+        elsif current_user.id == @conference.user_id
+          @current_user_role = "Conference Chair"
+        end
+      end
+    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_track
       @track = Track.find(params[:id])

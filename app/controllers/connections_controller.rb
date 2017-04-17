@@ -6,7 +6,6 @@ class ConnectionsController < ApplicationController
       flash[:success] = "Added contact."
       redirect_to root_url
     else
-      flash[:error] = "Unable to add contact or contact already exists."
       redirect_to root_url
     end
   end

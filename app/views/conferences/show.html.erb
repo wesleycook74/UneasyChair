@@ -6,6 +6,10 @@
         </div>
         <div class="col-md-4"></div>
     </div>
+    <div class="col-md-4"></div>
+    <div class="col-sm-5">
+        <h5> <%=@conference.description%> </h5>
+    </div>
 </div>
 
 <div class="container">
@@ -21,12 +25,17 @@
             </td>
             <td class="list_actions">
                 <%= link_to 'View Track', track %>
+                <%if current_user.id == @conference.user_id%>
+                    | <%= link_to "Remove Track", track, :method => :delete %>
+                <%end%>
             </td>
         </tr>
     <% end %>
 </table>
 </div>
 <div class="container">
-<%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-sm active"%>
-<%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-sm active"%>
+    <%if current_user.id == @conference.user_id%>
+        <%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-sm active"%>
+        <%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-sm active"%>
+    <%end%>
 </div>

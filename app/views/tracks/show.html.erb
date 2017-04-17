@@ -1,5 +1,4 @@
 <% @user = current_user %>
-
 <div class="container">
   <div class="row">
         <div class="col-md-4"></div>
@@ -30,7 +29,14 @@
                     </dl>
                 </td>
                 <td class="list_actions">
-                    <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%if @current_user_role == "Conference Chair" %>
+                      <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%elsif @current_user_role == "Track Chair" && user_role.role != "Track Chair"%>
+                      <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%end%>
+                    <%if user_role.user == current_user%>
+                      <%= link_to 'Leave Track', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%end%>
                 </td>
             </tr>
         <% end %>
@@ -108,8 +114,8 @@
   </table>
 
 </div>
-<div class="container">
-    <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
-    <%= link_to 'Add Paper', new_paper_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
-    <%= link_to 'Edit', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
-</div>
+
+  <div class="container">
+      <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
+      <%= link_to 'Edit Track', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
+  </div>
