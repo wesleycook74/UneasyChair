@@ -33,7 +33,7 @@ class RequestsController < ApplicationController
 
       respond_to do |format|
         if @request.save
-          format.html { redirect_to root_url, success: 'Request was successfully created.' }
+          format.html { redirect_to "/tracks/"+@track_id, :flash => {success: 'Request was sent succesfully.'} }
           format.json { render :show, status: :created, location: @request }
         else
           format.html { render :new }

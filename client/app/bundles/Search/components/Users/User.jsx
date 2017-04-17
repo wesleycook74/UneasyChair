@@ -11,19 +11,29 @@ const User = React.createClass ({
   },
 
   render: function() {
-
-    return(
-      <tr>   
-        <td> {this.props.user.username} </td>
-        <td> {this.props.user.name} </td>
-        <td> {this.props.user.affiliation} </td>
-        <td>
-            <a className="btn btn-primary btn-xs" onClick={this.handleAddToContacts}>
-              Add to Contacts
-            </a>
-        </td> 
-      </tr>
-    );
+    if(this.props.signed_in) {
+      return(
+        <tr>   
+          <td> {this.props.user.username} </td>
+          <td> {this.props.user.name} </td>
+          <td> {this.props.user.affiliation} </td>
+          <td>
+              <a className="btn btn-primary btn-xs" onClick={this.handleAddToContacts}>
+                Add to Contacts
+              </a>
+          </td> 
+        </tr>
+      );
+    }
+    else {
+      return(
+        <tr>   
+            <td> {this.props.user.username} </td>
+            <td> {this.props.user.name} </td>
+            <td> {this.props.user.affiliation} </td>
+        </tr>
+      );
+    }
   }
 });
 

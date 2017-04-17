@@ -37,7 +37,7 @@ class ConferencesController < ApplicationController
     @track = @conference.tracks.build(name: 'Main')
     respond_to do |format|
       if @conference.save
-        format.html { redirect_to @conference, notice: 'Conference was successfully created.' }
+        format.html { redirect_to @conference, :flash => {success: 'Conference was successfully created.'} }
         format.json { render :show, status: :created, location: @conference }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class ConferencesController < ApplicationController
   def update
     respond_to do |format|
       if @conference.update(conference_params)
-        format.html { redirect_to @conference, notice: 'Conference was successfully updated.' }
+        format.html { redirect_to @conference, :flash => {success: 'Conference was successfully updated.'} }
         format.json { render :show, status: :ok, location: @conference }
       else
         format.html { render :edit }

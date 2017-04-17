@@ -43,7 +43,7 @@ const Users = React.createClass ({
     var users = [];
 
     this.state.users.forEach(function(user) {
-      users.push(<User user={user}
+      users.push(<User user={user}  signed_in = {this.props.signed_in}
                                     key={'user'+ user.id}
                                     handleAddToContacts={this.handleAddToContacts}/>);
     }.bind(this));

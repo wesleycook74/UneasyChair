@@ -55,8 +55,6 @@ const Search = React.createClass ({
 						<button type="button" className="btn btn-secondary" onClick={() => this.handleSelectSearch("users")}>
 							Users
 						</button>
-
-
 					</div>
 					<Conferences initialSearch={this.state.currentSearch} handleSearch={this.handleSearch}/>
 				</div>
@@ -74,7 +72,7 @@ const Search = React.createClass ({
 							Users
 						</button>
 					</div>
-					<Users initialSearch={this.state.currentSearch}  handleSearch={this.handleSearch}/>
+					<Users initialSearch={this.state.currentSearch}  handleSearch={this.handleSearch} signed_in={this.props.signed_in}/>
 				</div>
 			);
 		}

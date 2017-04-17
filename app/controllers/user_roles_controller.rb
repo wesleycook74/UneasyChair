@@ -30,7 +30,7 @@ class UserRolesController < ApplicationController
       set_track
       respond_to do |format|
         if @user_role.save
-          format.html { redirect_to "/users/you", :flash => { :success => "User role created" } }
+          format.html { redirect_to @track, :flash => { :success => "Joined Track Successfully" } }
           format.json { render :show, status: :created, location: @user_role }
           @request.destroy
         else
@@ -62,7 +62,7 @@ class UserRolesController < ApplicationController
     set_track
     @user_role.destroy
     respond_to do |format|
-      format.html { redirect_to @track, notice: 'User role was successfully destroyed.' }
+      format.html { redirect_to @track, :flash => {success: 'User role was successfully destroyed.'} }
       format.json { head :no_content }
     end
   end
