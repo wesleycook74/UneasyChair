@@ -23,6 +23,15 @@ img {
     border: none !important;
 }
 
+.sexy_line{
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: linear-gradient( to right, #3e9ec1, #67eac3);
+}
+
 .badge-info {
   background-color: #3a87ad;
 }

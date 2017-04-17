@@ -18,7 +18,8 @@
                   <br>
                   <div><%= f.password_field :password_confirmation, class:'form-control', placeholder: 'Confirm Password' %></div>
                 </div>
-
+                <%= f.hidden_field :admin, :value => false %>
+                <%= f.hidden_field :chairable, :value => false %>
                 <div><%= f.submit "Sign up", class:'btn btn-primary' %></div>
             <% end %>
             </div>

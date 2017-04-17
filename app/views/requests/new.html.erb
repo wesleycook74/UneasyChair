@@ -1,3 +1,13 @@
-<h1>New Request</h1>
+<% if !@track.nil? %>
+  <div class="container">
+    <h1>New Request</h1>
+    <%= render 'form', request: @request %>
+  </div>
 
-<%= render 'form', request: @request %>
+<% else %>
+  <blockquote>
+    <h1> With Great Power Comes Great Responsibility.</h1>
+    <h4> Ignore dramatic quote and submit anyways?</h4>
+  </blockquote>
+  <%= render 'form2', request: @request %>
+<%end%>

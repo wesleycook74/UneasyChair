@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @user_roles = @user.user_roles
     @date = @user.created_at
     @date.strftime("%B %d, %Y")
@@ -35,6 +35,8 @@ class UsersController < ApplicationController
   end
 
   def show_owned
+    @admin = User.find_by_username('admin')
+    @admin = @admin.id
     respond_to do |format|
       format.html
       format.js {render layout: false} # Add this line to you respond_to block

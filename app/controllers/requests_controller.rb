@@ -2,25 +2,39 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
 
   def new
-    @track = Track.find(params[:track_id])
-    @request = Request.new
-    @contacts = current_user.contacts
+    @track = params[:track_id]
+    if !@track.nil?
+      @track = Track.find(params[:track_id])
+      @request = Request.new
+      @contacts = current_user.contacts
+    else
+      @admin = User.find(params[:receiver_id])
+      @admin = @admin.id
+      @request = Request.new
+    end
   end
 
   def show
-    @track = @request.track
-    @sender = @request.user.username
-    @role = @request.role
-    @trackname = @track.name
-    @conference = Conference.find(@track.conference)
+    if !@request.track.nil?
+      @track = @request.track
+      @sender = @request.user.username
+      @role = @request.role
+      @trackname = @track.name
+      @conference = Conference.find(@track.conference)
+    end
   end
 
   def create
-
-    #@user = current_user
-    #@request = Request.new(request_params)
-    #@track = Track.find(params[:track_id])
     @request = current_user.requests.build(request_params)
+    @track_id = request_params[:track_id]
+    if !@track_id.nil?
+      @receiver_id = request_params[:receiver_id]
+      if UserRole.exists?(track_id: @track_id, user_id: @receiver_id)
+        respond_to do |format|
+          format.html { redirect_to root_url, :flash => { :error => "User already exists in this track" } }
+        end
+      end
+    end
 
     respond_to do |format|
       if @request.save
@@ -36,9 +50,21 @@ class RequestsController < ApplicationController
   def destroy
     @request.destroy
     flash[:notice] = "Removed contact."
-    redirect_to root_url
+    respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Request was successfully destroyed.' }
+    end
   end
 
+  def set_chairable
+    @request = Request.find(params[:id])
+    @user = User.find(@request.user_id)
+    @user.update_attribute :chairable, true
+    @request.destroy
+
+    respond_to do |format|
+        format.html { redirect_to root_url, notice: 'User now chairable.' }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
