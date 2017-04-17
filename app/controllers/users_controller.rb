@@ -35,6 +35,8 @@ class UsersController < ApplicationController
   end
 
   def show_owned
+    @admin = User.find_by_username('admin')
+    @admin = @admin.id
     respond_to do |format|
       format.html
       format.js {render layout: false} # Add this line to you respond_to block

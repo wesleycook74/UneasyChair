@@ -1,6 +1,7 @@
 <h1>New Request</h1>
-<% if @request.track.nil? %>
+<% if !@request.track.nil? %>
   <%= render 'form', request: @request %>
 <% else %>
-<h1> hello </h1>
+<h1> Are you sure you are worthy? </h1>
+<%= render 'form2', request: @request %>
 <%end%>

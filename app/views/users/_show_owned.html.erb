@@ -29,6 +29,6 @@
   <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
   <% else %>
   <h2>Add button here to request chair ability </h2>
-  <%= link_to 'Request Chair Access', new_request_path, :class => "btn btn-primary btn-md active" %>
+  <%= link_to 'Request Chair Access', new_request_path(receiver_id: @admin), :class => "btn btn-primary btn-md active" %>
   <% end %>
 </div>

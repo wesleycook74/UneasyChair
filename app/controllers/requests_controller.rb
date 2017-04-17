@@ -7,6 +7,10 @@ class RequestsController < ApplicationController
       @track = Track.find(params[:track_id])
       @request = Request.new
       @contacts = current_user.contacts
+    else
+      @admin = User.find(params[:receiver_id])
+      @admin = @admin.id
+      @request = Request.new
     end
   end
 
@@ -22,9 +26,6 @@ class RequestsController < ApplicationController
 
   def create
 
-    #@user = current_user
-    #@request = Request.new(request_params)
-    #@track = Track.find(params[:track_id])
     @request = current_user.requests.build(request_params)
 
     respond_to do |format|
