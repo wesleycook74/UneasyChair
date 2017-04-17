@@ -1,20 +1,12 @@
 <% @user = current_user %>
-<%= session[:user_role]  %>
 
 <div class="container">
   <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-6">
               <h1><%= @conference.name %></h1>
         </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 col-md-offset-5">
-            <h4><%= @conference.acronym %></h4>
-        </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-6"></div>
     </div>
 </div>
 
@@ -38,8 +30,8 @@
                     </dl>
                 </td>
                 <td class="list_actions">
-                    <%= link_to 'Edit', edit_user_role_path(user_role) %> |
-                    <%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Edit Role', edit_user_role_path(user_role) %> |
+                    <%= link_to 'Remove', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </td>
             </tr>
         <% end %>
@@ -121,5 +113,4 @@
     <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Add Paper', new_paper_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
     <%= link_to 'Edit', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
-    <%= link_to 'Back', @conference, :class => "btn btn-primary btn-md active"%>
 </div>

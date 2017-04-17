@@ -1,33 +1,35 @@
-<%= form_for(request) do |f| %>
-  <% if request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+<div class="container">
+  <%= form_for(request) do |f| %>
+    <% if request.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
 
-      <ul>
-      <% request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field row">
+      <div class="col-md-4">
+        <%= f.select(:role, UserRole::SELECTABLE_ROLE_TYPES, {:include_blank => 'Select a role'}, {class: "form-control"}) %>
+      </div>
+
+    </div>
+
+    <div class="field row">
+      <!-- <%= f.text_field :receiver_id %> -->
+      <div class="col-md-4">
+      <%= f.collection_select(:receiver_id, @contacts, :id, :username, {prompt: "Choose contact"},{class: "form-control"}) %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :track_id, :value => @track.id %>
+
+    <div class="actions">
+      <%= f.button :submit , :class => "btn btn-primary btn-md active"%>
     </div>
   <% end %>
-
-  <div class="field row">
-    <div class="col-md-4">
-      <%= f.select(:role, UserRole::SELECTABLE_ROLE_TYPES, {:include_blank => 'Select a role'}, {class: "form-control"}) %>
-    </div>
-
-  </div>
-
-  <div class="field row">
-    <!-- <%= f.text_field :receiver_id %> -->
-    <div class="col-md-4">
-    <%= f.collection_select(:receiver_id, @contacts, :id, :username, {prompt: "Choose contact"},{class: "form-control"}) %>
-    </div>
-  </div>
-
-  <%= f.hidden_field :track_id, :value => @track.id %>
-
-  <div class="actions">
-    <%= f.button :submit , :class => "btn btn-primary btn-md active"%>
-  </div>
-<% end %>
+</div>
