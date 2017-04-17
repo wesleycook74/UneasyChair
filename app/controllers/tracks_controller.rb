@@ -22,7 +22,7 @@ class TracksController < ApplicationController
   def show
     @conference = @track.conference
     @user_roles = @track.user_roles
-     if @current_user_role.nil? && @conference.user_id != current_user.id
+     if @current_user_role.nil?
        render :partial => 'authorSubmitToTrack.html.erb'
      end
   end

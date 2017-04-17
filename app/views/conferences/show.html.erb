@@ -24,9 +24,12 @@
                 </dl>
             </td>
             <td class="list_actions">
+                
                 <%= link_to 'View Track', track %>
-                <%if current_user.id == @conference.user_id%>
-                    | <%= link_to "Remove Track", track, :method => :delete %>
+                <%if user_signed_in?%>
+                    <%if current_user.id == @conference.user_id%>
+                        | <%= link_to "Remove Track", track, :method => :delete %>
+                    <%end%>
                 <%end%>
             </td>
         </tr>
@@ -34,8 +37,10 @@
 </table>
 </div>
 <div class="container">
-    <%if current_user.id == @conference.user_id%>
-        <%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-sm active"%>
-        <%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-sm active"%>
+    <%if user_signed_in?%>
+        <%if current_user.id == @conference.user_id%>
+            <%= link_to 'Create Track', new_track_path(conference_id: @conference),  :action => "Create", :class => "btn btn-primary btn-sm active"%>
+            <%= link_to 'Edit Conference', edit_conference_path(@conference) , :class => "btn btn-primary btn-sm active"%>
+        <%end%>
     <%end%>
 </div>
