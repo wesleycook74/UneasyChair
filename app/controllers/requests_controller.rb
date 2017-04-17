@@ -45,6 +45,13 @@ class RequestsController < ApplicationController
     redirect_to root_url
   end
 
+  def set_chairable
+    @request = Request.find(params[:id])
+    @user = User.find(@request.user_id)
+    @user.update_attribute :chairable, true
+
+    format.html { redirect_to root_url}
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

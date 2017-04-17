@@ -28,6 +28,11 @@ Rails.application.routes.draw do
   resources :users
   resources :conferences
   resources :reviews
+  resources :requests do
+    member do
+      get :set_chairable
+    end
+  end
   resources :requests
   resources :connections
 

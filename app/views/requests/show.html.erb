@@ -1,4 +1,4 @@
-<% if @trackname.nil? %>
+<% if !@trackname.nil? %>
 <h2 class= "page-header">You have been invited by <%=@sender%> to join as a(n) <%=@role%></h2>
 <h4>Conference: <%=@conference.name%></h4>
 <h4>Track: <%=@trackname%></h4>
@@ -12,5 +12,6 @@
 <% else %>
 
 <h1> congrats </h1>
+<%= link_to "Approve", set_chairable_request_path(:id => @request.id), :class => "btn btn-primary btn-md active"%>
 <%= link_to "Deny", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
 <% end %>
