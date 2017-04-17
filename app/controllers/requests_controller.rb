@@ -23,19 +23,22 @@ class RequestsController < ApplicationController
 
     # Attempting to prevent duplicate users in a single track
     @track_id = request_params[:track_id]
-    @user_id = request_params[:user_id]
-    if UserRole.exists?(track_id: @track_id, user_id: @user_id)
-      format.html { redirect_to "/users/you", flash[:error] =  "User already has a role in this track" }
-    end
-    @request = current_user.requests.build(request_params)
+    @receiver_id = request_params[:receiver_id]
+    if UserRole.exists?(track_id: @track_id, user_id: @receiver_id)
+      respond_to do |format|
+        format.html { redirect_to "/users/you", :flash => { :error => "User already exists in this track" } }
+      end
+    else
+      @request = current_user.requests.build(request_params)
 
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to root_url, success: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @request.save
+          format.html { redirect_to root_url, success: 'Request was successfully created.' }
+          format.json { render :show, status: :created, location: @request }
+        else
+          format.html { render :new }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -30,7 +30,7 @@ class UserRolesController < ApplicationController
       set_track
       respond_to do |format|
         if @user_role.save
-          format.html { redirect_to "/users/you", success: 'User role was successfully created.' }
+          format.html { redirect_to "/users/you", :flash => { :success => "User role created" } }
           format.json { render :show, status: :created, location: @user_role }
           @request.destroy
         else
