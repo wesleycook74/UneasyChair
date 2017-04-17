@@ -2,17 +2,22 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
 
   def new
-    @track = Track.find(params[:track_id])
-    @request = Request.new
-    @contacts = current_user.contacts
+    @track = params[:track_id]
+    if !@track.nil?
+      @track = Track.find(params[:track_id])
+      @request = Request.new
+      @contacts = current_user.contacts
+    end
   end
 
   def show
-    @track = @request.track
-    @sender = @request.user.username
-    @role = @request.role
-    @trackname = @track.name
-    @conference = Conference.find(@track.conference)
+    if !@request.track.nil?
+      @track = @request.track
+      @sender = @request.user.username
+      @role = @request.role
+      @trackname = @track.name
+      @conference = Conference.find(@track.conference)
+    end
   end
 
   def create
