@@ -39,6 +39,7 @@ class UserRolesController < ApplicationController
       end
     end
   end
+  end
 
   # PATCH/PUT /user_roles/1
   # PATCH/PUT /user_roles/1.json

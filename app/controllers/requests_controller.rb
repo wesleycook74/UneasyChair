@@ -33,17 +33,16 @@ class RequestsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to root_url, :flash => { :error => "User already exists in this track" } }
         end
-      else
-    else
+      end
+    end
 
     respond_to do |format|
-        if @request.save
-          format.html { redirect_to root_url, notice: 'Request was successfully created.' }
-          format.json { render :show, status: :created, location: @request }
-        else
-          format.html { render :new }
-          format.json { render json: @request.errors, status: :unprocessable_entity }
-        end
+      if @request.save
+        format.html { redirect_to root_url, notice: 'Request was successfully created.' }
+        format.json { render :show, status: :created, location: @request }
+      else
+        format.html { render :new }
+        format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
   end
