@@ -1,0 +1,32 @@
+<!-- Tab 3 -->
+<div id = "current_tab">
+  <ul class="nav nav-tabs">
+    <li role="presentation"><%= link_to 'Joined', show_joined_path, :remote => true %></li>
+    <li role="presentation"><%= link_to 'Owned', show_owned_path, :remote => true %></li>
+    <li role="presentation"  class="active"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
+    <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
+  </ul>
+  <%if !@user.papers.empty?%>
+    <H3>Your Contributions </H3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Conference</th>
+          <th>Track</th>
+          <th>Title</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.papers.each do |paper| %>
+        <tr>
+          <td><%= paper.track.conference.name %></td>
+          <td><%= paper.track.name %></td>
+          <td><%= paper.title %></td>
+          <td><%= link_to 'Go to', paper_path(paper) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%end%>
+</div>

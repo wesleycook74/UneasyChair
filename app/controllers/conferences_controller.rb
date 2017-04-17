@@ -31,9 +31,10 @@ class ConferencesController < ApplicationController
   # POST /conferences.json
   def create
     @user = current_user
+    @role = "Chair"
 
     @conference = @user.conferences.build(conference_params)
-    @conference.tracks.build(name: 'Main')
+    @track = @conference.tracks.build(name: 'Main')
     respond_to do |format|
       if @conference.save
         format.html { redirect_to @conference, notice: 'Conference was successfully created.' }

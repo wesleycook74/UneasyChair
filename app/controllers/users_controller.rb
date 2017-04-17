@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :set_user_role]
-  before_action :set_user_roles, only: [:show, :edit, :update, :destroy]
+  #before_action :set_user, only: [:show, :show_joined, :edit, :update, :destroy, :set_user_role]
+  #before_action :set_user_roles, only: [:show, :show_joined, :edit, :update, :destroy]
+  before_action :set_user
+  before_action :set_user_roles
+
   # GET /users
   # GET /users.json
   def index
@@ -10,6 +13,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @user_roles = @user.user_roles
     @date = @user.created_at
     @date.strftime("%B %d, %Y")
     @date = @date.strftime("%B %Y")
@@ -21,6 +26,35 @@ class UsersController < ApplicationController
       @affil = @user.affiliation
     end
   end
+
+  def show_joined
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_owned
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_contribute
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_contact
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
 
   def search
     users = User.where("username LIKE '%#{params[:query]}%'")
@@ -101,6 +135,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :affiliation)
+      params.require(:user).permit(:name, :affiliation, :profpic)
     end
 end

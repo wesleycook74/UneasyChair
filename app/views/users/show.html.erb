@@ -1,7 +1,7 @@
 <div class="col-md-2">
   <br />
   <div class = "well">
-    <img src="<%= asset_path( 'identicon.png' ) %>" width="250" height="250" alt="">
+    <img src="<%=@user.profpic_url%>" width="250" height="250" alt="">
   </div>
 
 
@@ -19,12 +19,21 @@
 
 <div class="col-md-9">
 
+  <!-- Tab 1
   <%if @user_roles.empty? && @user.conferences.empty? && @user.papers.empty?%>
       <div class="container">
           <h4>You're not involved with any conferences yet! :(</h4>
       </div>
   <%end%>
-  <div>
+-->
+  <% if @user == current_user %>
+  <div  id = "current_tab">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><%= link_to 'Joined', show_joined_path, :remote => true %></li>
+      <li role="presentation"><%= link_to 'Owned', show_owned_path, :remote => true %></li>
+      <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
+      <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
+    </ul>
     <%if !@user_roles.empty?%>
       <H3>Conferences You Joined </H3>
       <table class="table table-hover">
@@ -49,63 +58,8 @@
       </table>
     <%end%>
   </div>
+  <% else %>
+  <h1> hello <%= current_user.username %> </h1>
+  <% end %>
 
-  <div>
-    <%if !@user.conferences.empty?%>
-      <H3>Conferences You Own </H3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Conference</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.conferences.each do |conference| %>
-          <tr>
-            <td><%= conference.name %></td>
-            <td><%= link_to 'Go to', conference_path(conference) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <%end%>
-    <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
-  </div>
-
-  <div>
-    <%if !@user.papers.empty?%>
-      <H3>Your Contributions </H3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Conference</th>
-            <th>Track</th>
-            <th>Title</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.papers.each do |paper| %>
-          <tr>
-            <td><%= paper.track.conference.name %></td>
-            <td><%= paper.track.name %></td>
-            <td><%= paper.title %></td>
-            <td><%= link_to 'Go to', paper_path(paper) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <%end%>
-  </div>
-
-  <h2>Your Contacts (temporary)</h2>
-  <ul>
-    <% for connection in @user.connections do %>
-    <li>
-      <%= connection.contact.username %>
-      (<%= link_to "remove", connection, :method => :delete %>)
-    </li>
-    <% end %>
-  </ul>
 </div>
