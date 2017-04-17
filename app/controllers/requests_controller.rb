@@ -25,16 +25,25 @@ class RequestsController < ApplicationController
   end
 
   def create
-
     @request = current_user.requests.build(request_params)
+    @track_id = request_params[:track_id]
+    if !@track_id.nil?
+      @receiver_id = request_params[:receiver_id]
+      if UserRole.exists?(track_id: @track_id, user_id: @receiver_id)
+        respond_to do |format|
+          format.html { redirect_to root_url, :flash => { :error => "User already exists in this track" } }
+        end
+      else
+    else
 
     respond_to do |format|
-      if @request.save
-        format.html { redirect_to root_url, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        if @request.save
+          format.html { redirect_to root_url, notice: 'Request was successfully created.' }
+          format.json { render :show, status: :created, location: @request }
+        else
+          format.html { render :new }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
