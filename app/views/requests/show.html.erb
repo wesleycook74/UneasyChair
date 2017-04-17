@@ -11,7 +11,7 @@
 
 <% else %>
 
-<h1> congrats </h1>
+<h1> Allow them to become a chair? </h1>
 <%= link_to "Approve", set_chairable_request_path(:id => @request.id), :class => "btn btn-primary btn-md active"%>
 <%= link_to "Deny", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
 <% end %>

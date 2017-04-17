@@ -10,7 +10,7 @@
     </button>
   </div>
 
- 
+
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <div class="col-md-1"></div>
     <a class="navbar-brand" href="/welcome/index">
@@ -37,7 +37,7 @@
         <ul class="dropdown-menu">
           <% for invitation in current_user.invitations.take(5) %>
           <li>
-            <a><%= link_to "invitation from #{invitation.user.username}", request_path(invitation)%></a>
+            <a><%= link_to "notification from #{invitation.user.username}", request_path(invitation)%></a>
           </li>
           <% end %>
         </ul>

@@ -42,7 +42,9 @@ class RequestsController < ApplicationController
   def destroy
     @request.destroy
     flash[:notice] = "Removed contact."
-    redirect_to root_url
+    respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Request was successfully destroyed.' }
+    end
   end
 
   def set_chairable
@@ -51,7 +53,9 @@ class RequestsController < ApplicationController
     @user.update_attribute :chairable, true
     @request.destroy
 
-    format.html { redirect_to root_url, notice: 'User is chairable.' }
+    respond_to do |format|
+        format.html { redirect_to root_url, notice: 'User now chairable.' }
+    end
   end
 
   private
