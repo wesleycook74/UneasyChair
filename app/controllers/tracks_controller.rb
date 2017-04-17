@@ -94,13 +94,14 @@ class TracksController < ApplicationController
 
   private
 
+    # Assigns user_role to the currently signed user for the current track
     def set_user_role
       @conference = @track.conference
       if user_signed_in? 
         if UserRole.exists?(track_id: @track.id, user_id: current_user.id )
           @current_user_role = UserRole.where(track_id: @track.id, user_id: current_user.id ).first.role
         elsif current_user.id == @conference.user_id
-          @current_user_role = "Conference Chair"
+          @current_user_role = "Chair"
         end
       end
     end

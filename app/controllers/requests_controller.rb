@@ -3,8 +3,11 @@ class RequestsController < ApplicationController
 
   def new
     @track = params[:track_id]
+      
     if !@track.nil?
       @track = Track.find(params[:track_id])
+      current_user_role = UserRole.where(track_id: @track.id, user_id: current_user.id).first
+      
       @request = Request.new
       @contacts = current_user.contacts
     else

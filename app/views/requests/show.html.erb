@@ -1,5 +1,6 @@
+<div class="container">
 <% if !@trackname.nil? %>
-<h2 class= "page-header">You have been invited by <%=@sender%> to join as a(n) <%=@role%></h2>
+<h2 class= "page-header">You have been invited by <%=@sender%> to join as a <%=@role%></h2>
 <h4>Conference: <%=@conference.name%></h4>
 <h4>Track: <%=@trackname%></h4>
 <h4>Role: <%=@role%></h4>
@@ -7,7 +8,7 @@
 <%= button_to 'Accept', user_roles_path(:user_role => {:role => @request.role}),
  :method => :post, :class => "btn btn-primary btn-md active", params: {track_id: @track, request_id: @request.id} %>
 </br>
-<%= link_to "Deny", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
+<%= link_to "Deny ", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
 
 <% else %>
 
@@ -15,3 +16,4 @@
 <%= link_to "Approve", set_chairable_request_path(:id => @request.id), :class => "btn btn-primary btn-md active"%>
 <%= link_to "Deny", @request, :method => :delete, :class => "btn btn-primary btn-md active" %>
 <% end %>
+</div>
