@@ -31,7 +31,6 @@ class PapersController < ApplicationController
     @track = Track.find(params[:track_id])
     @paper = @track.papers.build(paper_params.merge(:user_id =>@user.id))
 
-
     respond_to do |format|
       if @paper.save
         format.html { redirect_to track_path(@paper.track.id), notice: 'Paper was successfully created.' }

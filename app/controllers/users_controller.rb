@@ -59,8 +59,11 @@ class UsersController < ApplicationController
 
 
   def search
-    users = User.where("username LIKE '%#{params[:query]}%'")
-    render json: users
+    @users = User.where("username LIKE '%#{params[:query]}%'")
+    if user_signed_in?
+      @users = @users.where.not(id: current_user.id)
+    end
+    render json: @users
   end
 
   def set_user_role
@@ -125,15 +128,16 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user
+      if user_signed_in?
+        @user = current_user
+      end
     end
 
     def set_user_roles
-      @user_roles = @user.user_roles
+      if user_signed_in?
+        @user_roles = @user.user_roles
+      end
     end
-
-
-
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
