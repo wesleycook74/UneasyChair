@@ -28,15 +28,29 @@
 </p>
 
 <p>
-  <strong>Rebuttal:</strong>
-  <%= @review.rebuttal %>
-</p>
-
-<p>
   <strong>Confidence:</strong>
   <%= @review.confidence %>
 </p>
 
+<p>
+  <strong>Review:</strong>
+  <%= @review.review %>
+</p>
+<% if !@review.rebuttle.equal?(nil) %>
+  <% @review.rebuttle.each do |rebuttle| %>
+    <p>
+      <strong>Author's Rebuttal:</strong>
+        <%= rebuttle.authorRebuttle %>
+    </p>
+    <% end %>
+
+<% end %>
+
+<% if @paper.user.id == @user.id %>
+
+<%= link_to 'Rubute', new_rebuttle_path(:rID => @review.id), :action => "Create",
+            :class => "btn btn-primary btn-sm active" %>
+<% end %>
 
 <% if @review.user_id == @user.id %>
 <%= link_to 'Edit', edit_review_path(@review), :class => "btn btn-primary btn-sm active"  %>
