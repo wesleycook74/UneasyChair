@@ -6,29 +6,33 @@
     <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
     <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
   </ul>
-  <% if @user.chairable? %>
-  <%if !@user.conferences.empty?%>
-    <H3>Conferences You Own </H3>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Conference</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.conferences.each do |conference| %>
-        <tr>
-          <td><%= conference.name %></td>
-          <td><%= link_to 'Go to', conference_path(conference) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <%end%>
-  <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
-  <% else %>
-  <h2>Currently have no chair access </h2>
-  <%= link_to 'Request Chair Access', new_request_path(receiver_id: @admin), :class => "btn btn-primary btn-md active" %>
-  <% end %>
+  <div class="container">
+    <% if @user.chairable? %>
+      <%if !@user.conferences.empty?%>
+        <H3>Conferences You Own </H3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Conference</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.conferences.each do |conference| %>
+              <tr>
+                <td><%= conference.name %></td>
+                <td><%= link_to 'Go to', conference_path(conference) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <%else%>
+        <H3> You currently do not own any Conferences </H3>
+      <%end%>
+      <%= link_to 'Start a Conference', new_conference_path,  :action => "Create", :class => "btn btn-primary btn-sm active"%>
+    <% else %>
+      <h3> You currently don't have Chair access </h3>
+      <%= link_to 'Request Chair Access', new_request_path(receiver_id: @admin), :class => "btn btn-primary btn-md active" %>
+    <% end %>
+  </div>
 </div>
