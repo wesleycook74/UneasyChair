@@ -1,0 +1,38 @@
+<div  id = "current_tab">
+  <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to 'Need Reviewing', show_needs_reviewing_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation" class="active"><%= link_to 'Reviewed', show_reviewed_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
+  </ul>
+  <div class="container">
+    <%if !@papers.empty?%>
+    <h4>Reviewed:</h4>
+    <table class="table table-hover">
+
+      <% @papers.each do |paper| %>
+        <% if paper.reviews.size > 2 && paper.accepted.equal?(false)  %>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <td class="list_description">
+              <dl>
+                <dt><%= paper.title %></dt>
+              </dl>
+            </td>
+            <td class="list_description">
+              <dl>
+                <dt><%= paper.author %></dt>
+              </dl>
+            </td>
+            <td class="list_actions">
+              <%= link_to 'Show', paper %> |
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <%else%>
+      <H3> No papers have been reviewed </H3>
+    <%end%>
+
+  </div>
+</div>

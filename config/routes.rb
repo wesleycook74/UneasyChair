@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :tracks
+
+  get "/show_needs_reviewing" => 'tracks#show_needs_reviewing', as: 'show_needs_reviewing'
+  get "/show_reviewed" => 'tracks#show_reviewed', as: 'show_reviewed'
+  get "/show_accepted" => 'tracks#show_accepted', as: 'show_accepted'
+  get "/show_users" => 'tracks#show_users', as: 'show_users'
+
   get "/show_joined" => 'users#show_joined', as: 'show_joined'
   get "/show_owned" => 'users#show_owned', as: 'show_owned'
   get "/show_contributed" => 'users#show_contributed', as: 'show_contributed'

@@ -18,14 +18,6 @@
 </div>
 
 <div class="col-md-9">
-
-  <!-- Tab 1
-  <%if @user_roles.empty? && @user.conferences.empty? && @user.papers.empty?%>
-      <div class="container">
-          <h4>You're not involved with any conferences yet! :(</h4>
-      </div>
-  <%end%>
--->
   <% if @user == current_user %>
   <div  id = "current_tab">
     <ul class="nav nav-tabs">

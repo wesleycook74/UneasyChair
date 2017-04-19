@@ -19,10 +19,10 @@
 <div class="col-md-9">
   <div id = "current_tab">
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><%= link_to 'Need Reviewing', show_joined_path, :remote => true %></li>
-      <li role="presentation"><%= link_to 'Reviewed', show_owned_path, :remote => true %></li>
-      <li role="presentation"><%= link_to 'Accepted', show_contributed_path, :remote => true %></li>
-      <li role="presentation"><%= link_to 'Users', show_contacts_path, :remote => true %></li>
+      <li role="presentation" class="active"><%= link_to 'Need Reviewing', show_needs_reviewing_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Reviewed', show_reviewed_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
     </ul>
     <div class="container">
       <%if @papers.size > 1%>

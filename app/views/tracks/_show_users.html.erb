@@ -1,0 +1,37 @@
+<div  id = "current_tab">
+  <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to 'Need Reviewing', show_needs_reviewing_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Reviewed', show_reviewed_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation" class="active"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
+  </ul>
+  <div class="container">
+    <H3>Users</H3>
+    <table class="table table-hover">
+      <% @user_roles.each do |user_role| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td class="list_description">
+            <dl>
+              <dt><%= user_role.user.username %></dt>
+            </dl>
+          </td>
+          <td class="list_description">
+            <dl>
+              <dt><%= user_role.role %></dt>
+            </dl>
+          </td>
+          <td class="list_actions">
+            <%if @current_user_role == "Chair" %>
+              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %> <!-- Conference Chair can remove anyone -->
+            <%elsif @current_user_role == "Track Chair" && user_role.role != "Track Chair"%>               <!-- Track Chair can remove members -->
+              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+            <%if user_role.user == current_user%>                                                          <!-- Members can only remove themselves -->
+              <%= link_to 'Leave Track', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
