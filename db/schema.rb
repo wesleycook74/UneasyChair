@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417003015) do
+ActiveRecord::Schema.define(version: 20170418162343) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20170417003015) do
     t.index ["user_id"], name: "index_papers_on_user_id"
   end
 
+  create_table "rebuttles", force: :cascade do |t|
+    t.integer  "review_ID"
+    t.string   "authorRebuttle"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "receiver_id"
@@ -56,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170417003015) do
     t.integer  "score"
     t.date     "date"
     t.string   "reviewer"
-    t.string   "rebuttal"
+    t.string   "review"
     t.integer  "confidence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

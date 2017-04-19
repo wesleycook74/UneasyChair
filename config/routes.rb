@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :rebuttles
   get 'search/index'
 
   resources :user_roles, only: [:new, :create, :edit, :destroy]

@@ -1,0 +1,23 @@
+<%= form_for(rebuttle) do |f| %>
+    <% if rebuttle.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(rebuttle.errors.count, "error") %> prohibited this rebuttle from being saved:</h2>
+
+          <ul>
+            <% rebuttle.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :review_ID, value: @review.id  %>
+    <%= f.label(:Author_Rebuttle) %>
+    <%= f.text_field :authorRebuttle %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, name:  "rID", value: params[:rID], :class => "btn btn-primary btn-md active" %>
+  </div>
+<% end %>
