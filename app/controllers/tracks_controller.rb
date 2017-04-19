@@ -18,11 +18,48 @@ class TracksController < ApplicationController
 
   end
 
+  def show_needs_reviewing
+    @track = Track.find(params[:track_id])
+    @papers = @track.papers
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_reviewed
+    @track = Track.find(params[:track_id])
+    @papers = @track.papers
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_accepted
+    @track = Track.find(params[:track_id])
+    @papers = @track.papers
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
+  def show_users
+    @track = Track.find(params[:track_id])
+    @user_roles = @track.user_roles
+    respond_to do |format|
+      format.html
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
+
   # GET /tracks/1
   # GET /tracks/1.json
   def show
     @conference = @track.conference
     @user_roles = @track.user_roles
+    @papers = @track.papers
      if @current_user_role.nil?
        render :partial => 'authorSubmitToTrack.html.erb'
      end

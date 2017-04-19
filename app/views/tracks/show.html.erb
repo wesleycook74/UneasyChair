@@ -4,126 +4,65 @@
   <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-6">
-              <h1><%= @conference.name %></h1>
+          <h1><%= @conference.name %></h1>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-4"></div>
     </div>
 </div>
 
-<div class="container">
-    <h2> <%= @track.name %> Track </h2>
-</div>
-<div class="container">
-    <H3>Users</H3>
-    <table class="table table-hover">
-
-        <% @user_roles.each do |user_role| %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td class="list_description">
-                    <dl>
-                        <dt><%= user_role.user.username %></dt>
-                    </dl>
-                </td>
-                <td class="list_description">
-                    <dl>
-                        <dt><%= user_role.role %></dt>
-                    </dl>
-                </td>
-                <td class="list_actions">
-                    <%if @current_user_role == "Chair" %>
-                      <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %> <!-- Conference Chair can remove anyone -->
-                    <%elsif @current_user_role == "Track Chair" && user_role.role != "Track Chair"%>               <!-- Track Chair can remove members -->
-                      <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <%end%>
-                    <%if user_role.user == current_user%>                                                          <!-- Members can only remove themselves -->
-                      <%= link_to 'Leave Track', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <%end%>
-                </td>
-            </tr>
-        <% end %>
-    </table>
-  <h3>Papers</h3>
-  <h4>Approved:</h4>
-  <table class="table table-hover">
-    <% @papers = @track.papers %>
-    <% @papers.each do |paper| %>
-
-        <% if paper.accepted.equal?(true)%>
-
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-              <td class="list_description">
-                <dl>
-                  <dt><%= paper.title %></dt>
-                </dl>
-              </td>
-              <td class="list_description">
-                <dl>
-                  <dt><%= paper.author %></dt>
-                </dl>
-              </td>
-              <td class="list_actions">
-                <%= link_to 'Show', paper %> |
-              </td>
-            </tr>
-        <% end %>
-    <% end %>
-  </table>
-  <h4>Needs Reviewing:</h4>
-  <table class="table table-hover">
-
-    <% @papers.each do |paper| %>
-        <% if paper.reviews.size < 3 and paper.accepted.equal?(false) %>
-        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-          <td class="list_description">
-            <dl>
-              <dt><%= paper.title %></dt>
-            </dl>
-          </td>
-          <td class="list_description">
-            <dl>
-              <dt><%= paper.author %></dt>
-            </dl>
-          </td>
-          <td class="list_actions">
-            <%= link_to 'Show', paper %> |
-          </td>
-        </tr>
-            <% end %>
-    <% end %>
-  </table>
-  <h4>Reviewed:</h4>
-  <table class="table table-hover">
-
-    <% @papers.each do |paper| %>
-        <% if paper.reviews.size > 2 && paper.accepted.equal?(false)  %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-              <td class="list_description">
-                <dl>
-                  <dt><%= paper.title %></dt>
-                </dl>
-              </td>
-              <td class="list_description">
-                <dl>
-                  <dt><%= paper.author %></dt>
-                </dl>
-              </td>
-              <td class="list_actions">
-                <%= link_to 'Show', paper %> |
-              </td>
-            </tr>
-        <% end %>
-    <% end %>
-  </table>
-
-</div>
-
-
+<div class="col-md-9">
   <div class="container">
-      <%if @current_user_role == "Chair" || @current_user_role == "Track Chair" %>
-      <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
-      <%end%>
-      <%if @current_user_role == "Chair" %>
-      <%= link_to 'Edit Track', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
-      <%end%>
+    <h2> <%= @track.name %> Track </h2>
   </div>
+</div>
+
+<div class="col-md-9">
+  <div id = "current_tab">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><%= link_to 'Need Reviewing', show_needs_reviewing_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Reviewed', show_reviewed_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
+      <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
+    </ul>
+    <div class="container">
+      <%if @papers.size > 1%>
+        <h3>Needs Reviewing:</h3>
+        <table class="table table-hover">
+
+          <% @papers.each do |paper| %>
+            <% if paper.reviews.size < 3 and paper.accepted.equal?(false) %>
+            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+              <td class="list_description">
+                <dl>
+                  <dt><%= paper.title %></dt>
+                </dl>
+              </td>
+              <td class="list_description">
+                <dl>
+                <dt><%= paper.author %></dt>
+                </dl>
+              </td>
+              <td class="list_actions">
+                <%= link_to 'Show', paper %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+
+        </table>
+      <%else%>
+        <H3> No papers currently need reviewing</H3>
+      <%end%>
+    </div>
+  </div>
+  </br>
+  <div class="container">
+    <%if @current_user_role == "Chair" || @current_user_role == "Track Chair" %>
+      <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
+    <%end%>
+    <%if @current_user_role == "Chair" %>
+      <%= link_to 'Edit Track', edit_track_path(@track), :class => "btn btn-primary btn-md active" %>
+    <%end%>
+  </div>
+</div>
 

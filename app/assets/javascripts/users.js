@@ -1,5 +1,3 @@
-$("#current_tab").html("<%= escape_javascript(render partial: 'users/show_joined', locals: { user: @user } ) %>");
-
 jQuery(document).ready(function($) {
     $(".clickable").click(function() {
 		console.log($(this).data("link"));
