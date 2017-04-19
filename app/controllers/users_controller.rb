@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @user_roles = @user.user_roles
     @date = @user.created_at
     @date.strftime("%B %d, %Y")
