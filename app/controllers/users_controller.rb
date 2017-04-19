@@ -57,7 +57,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def search
     @users = User.where("username LIKE '%#{params[:query]}%'")
     if user_signed_in?
@@ -71,9 +70,6 @@ class UsersController < ApplicationController
     @role = UserRole.find_by(user_id: @user.id, track_id: @track.id)
     session[:user_role] = @role.role
     redirect_to @track
-  end
-
-  def set_my_user_role
   end
 
   # GET /users/new

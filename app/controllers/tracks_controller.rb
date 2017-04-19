@@ -22,6 +22,7 @@ class TracksController < ApplicationController
   def show
     @conference = @track.conference
     @user_roles = @track.user_roles
+    @papers = @track.papers
      if @current_user_role.nil?
        render :partial => 'authorSubmitToTrack.html.erb'
      end
