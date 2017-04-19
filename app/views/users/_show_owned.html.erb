@@ -6,7 +6,7 @@
     <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
     <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
   </ul>
-  <div class="container">
+  <div>
     <% if @user.chairable? %>
       <%if !@user.conferences.empty?%>
         <H3>Conferences You Own </H3>

@@ -7,13 +7,13 @@
 </ul>
 
 <div id = "current_tab">
-    <div class="container">
+    <div>
       <%if !@user.connections.empty? %>
         <H3> Contacts </H3>
         <table class="table table-hover">
           <tbody>
             <% for connection in @user.connections do %>
-            <tr>
+            <tr class="clickable" data-link="/users/<%=connection.contact.id%>">
               <td><img src="<%=connection.contact.profpic_url%>" width="50" height="50" alt=""></td>
               <td><%= connection.contact.username %></td>
               <td><%= link_to "Remove Contact", connection, :method => :delete %></td>
