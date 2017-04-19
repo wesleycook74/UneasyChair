@@ -6,6 +6,7 @@
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
   <div class="container">
+  <%if !@papers.empty?%>
     <h3>Accepted:</h3>
     <table class="table table-hover">
       <% @papers = @track.papers %>
@@ -31,5 +32,8 @@
 
       <% end %>
     </table>
+    <%else%>
+      <H3> No Papers Have Been Accepted
+    <%end%>
   </div>
 </div>
