@@ -1,7 +1,6 @@
 class ConnectionsController < ApplicationController
 
   def create
-    
     if !Connection.exists?(user_id: current_user.id, contact_id: params[:contact_id])
       @connection = current_user.connections.build(:contact_id => params[:contact_id])
       flash[:success] = "Added contact."
