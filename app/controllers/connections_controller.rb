@@ -4,6 +4,7 @@ class ConnectionsController < ApplicationController
     
     if !Connection.exists?(user_id: current_user.id, contact_id: params[:contact_id])
       @connection = current_user.connections.build(:contact_id => params[:contact_id])
+      @connection.save
       flash[:success] = "Added contact."
       redirect_to root_url
     else
