@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170224185203) do
     t.integer  "score"
     t.date     "date"
     t.string   "reviewer"
-    t.string   "rebuttal"
+    t.string   "rebuttle"
     t.integer  "confidence"
 
 end

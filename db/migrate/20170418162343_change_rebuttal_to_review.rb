@@ -1,5 +1,5 @@
-class ChangeRebuttalToReview < ActiveRecord::Migration[5.0]
+class ChangerebuttleToReview < ActiveRecord::Migration[5.0]
   def change
-    rename_column :reviews, :rebuttal, :review
+    rename_column :reviews, :rebuttle, :review
   end
 end

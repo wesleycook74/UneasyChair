@@ -5,7 +5,7 @@ one:
   date: 2017-02-24
   reviewer: MyString
   score: 1
-  rebuttal: MyString
+  rebuttle: MyString
   confidence: 1
 
 two:
@@ -13,5 +13,5 @@ two:
   date: 2017-02-24
   reviewer: MyString
   score: 1
-  rebuttal: MyString
+  rebuttle: MyString
   confidence: 1
