@@ -37,10 +37,6 @@
 
 <p>
   <% @user = current_user %>
-  <% @roles = session[:user_role]%>
-  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
-  <%= puts @roles %>
-  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
   <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
       <%= form_for(@paper) do |f| %>
           <% if @paper.accepted.equal?(false) %>
