@@ -52,7 +52,6 @@
   </div>
   <% else %>
   <%= render partial: 'show_other' %>
-  <%= button_to "send notification", notifications_path(:message => "yo", :user_id => @user.id, :title => "title") %>
   <% end %>
 
 </div>
