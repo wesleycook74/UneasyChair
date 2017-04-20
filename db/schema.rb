@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419235515) do
+ActiveRecord::Schema.define(version: 20170418162343) do
 
   create_table "conferences", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20170419235515) do
     t.datetime "updated_at", null: false
     t.integer  "paper_id"
     t.integer  "user_id"
-    t.string   "rebuttal"
   end
 
   create_table "tracks", force: :cascade do |t|
