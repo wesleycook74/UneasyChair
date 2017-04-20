@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20170418162343) do
     t.index ["user_id"], name: "index_papers_on_user_id"
   end
 
+  create_table "rebuttles", force: :cascade do |t|
+    t.integer  "review_ID"
+    t.string   "authorRebuttle"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "receiver_id"
