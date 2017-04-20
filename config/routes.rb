@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   end
   resources :requests
   resources :connections
+  resources :notifications
 
 
   resources :papers, only: [:index, :new, :edit, :create, :destroy]

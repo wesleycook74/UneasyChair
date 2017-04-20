@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h1>Notification Details</h1>
+</div>
+<h5> <%= @message %> </h5>
+<br></br>
+<%= button_to "mark seen", notification_path(@notification), method: :delete, class: "btn btn-primary" %>
