@@ -1,7 +1,7 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  before_action :get_user_role, only: [:show]
   # GET /papers
   # GET /papers.json
   def index
@@ -11,7 +11,9 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.json
   def show
+    @track = Track.find(@paper.track_id)
 
+    @chair_id = @track.conference.user_id
   end
 
   # GET /papers/new
@@ -82,6 +84,18 @@ class PapersController < ApplicationController
       @total = 0;
       @paper.reviews.each do |review|
         @total = @total + 1
+      end
+    end
+
+    def get_user_role
+      @track = Track.find(@paper.track_id)
+      @conference = @track.conference
+      if user_signed_in?
+        if UserRole.exists?(track_id: @track.id, user_id: current_user.id )
+          @current_user_role = UserRole.where(track_id: @track.id, user_id: current_user.id ).first.role
+        elsif current_user.id == @conference.user_id
+          @current_user_role = "Chair"
+        end
       end
     end
 end
