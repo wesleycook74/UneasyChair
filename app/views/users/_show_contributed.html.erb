@@ -6,7 +6,7 @@
     <li role="presentation"  class="active"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
     <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
   </ul>
-  <div class="container">
+  <div>
     <%if !@user.papers.empty?%>
       <H3>Your Contributions </H3>
       <table class="table table-hover">

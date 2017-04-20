@@ -1,0 +1,11 @@
+<h1> Their Contacts </h1>
+<table class="table table-hover">
+  <tbody>
+    <% for connection in @user.connections do %>
+    <tr class="clickable" data-link="/users/<%=connection.contact.id%>">
+      <td><img src="<%=connection.contact.profpic_url%>" width="50" height="50" alt=""></td>
+      <td><%= connection.contact.username %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
