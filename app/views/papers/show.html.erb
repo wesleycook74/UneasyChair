@@ -1,4 +1,6 @@
-<%=session[:user_role]%>
+<%= session[:user_role]%>
+
+
 <p id="notice"><%= notice %></p>
 <h4 class="section-title">Paper</h4>
 <p>
@@ -39,7 +41,7 @@
   <% @user = current_user %>
   <% @roles = session[:user_role]%>
 
-  <% if @roles == "chair" %>
+  <% if @roles == "Chair" %>
       <%= form_for(@paper) do |f| %>
           <% if @paper.accepted.equal?(false) %>
               <%= f.hidden_field :accepted, value: true %>
