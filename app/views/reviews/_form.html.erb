@@ -11,16 +11,22 @@
     </div>
   <% end %>
 
+<% @user = current_user %>
 
+  <div>
 
+    <strong>
+      Name:
+    </strong>
+    <%= @user.name %>
+  </div>
   <div class="field">
     <%= f.label :date %>
     <%= f.date_select :date %>
   </div>
 
   <div class="field">
-    <%= f.label :reviewer %>
-    <%= f.text_field :reviewer %>
+    <%= f.hidden_field :reviewer, value: @user.name %>
   </div>
 
   <div class="field">

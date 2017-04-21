@@ -41,16 +41,23 @@
   <% @user = current_user %>
   <% @roles = session[:user_role]%>
 
+
   <% if @roles == "Chair" %>
+
+  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
+  <%= puts @roles %>
+  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
+  <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+
       <%= form_for(@paper) do |f| %>
           <% if @paper.accepted.equal?(false) %>
               <%= f.hidden_field :accepted, value: true %>
-              <%= f.submit 'Approve' %>
+              <%= f.submit 'Approve', :class => "btn btn-primary btn-sm active" %>
 
           <% end %>
       <% end %>
   <% end %>
-
+  <% end %>
 
 </p>
 
