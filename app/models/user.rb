@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :notifications
 
   validates_uniqueness_of :username
-
+  validates :name, presence: true
   mount_uploader :profpic, ProfpicUploader
 
 end
