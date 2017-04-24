@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           <% @user.papers.each do |paper| %>
-          <tr>
+          <tr class="clickable" data-link="<%= paper_path(paper) %>">
             <td><%= paper.track.conference.name %></td>
             <td><%= paper.track.name %></td>
             <td><%= paper.title %></td>
