@@ -10,5 +10,5 @@
   <%= @rebuttle.authorRebuttle %>
 </p>
 
-<%= link_to 'Edit', edit_rebuttle_path(@rebuttle) %> |
-<%= link_to 'Back', rebuttles_path %>
+<%= link_to 'Edit', edit_rebuttle_path(@rebuttle),:class => "btn btn-primary btn-md active"  %>
+<%= link_to 'Back', review_path(@rebuttle.review_ID),:class => "btn btn-primary btn-md active"  %>

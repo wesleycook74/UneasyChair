@@ -1,4 +1,6 @@
-<%=session[:user_role]%>
+<%= session[:user_role]%>
+
+
 <p id="notice"><%= notice %></p>
 <h4 class="section-title">Paper</h4>
 <p>
@@ -39,16 +41,23 @@
   <% @user = current_user %>
   <% @roles = session[:user_role]%>
 
-  <% if @roles == "chair" %>
+
+  <% if @roles == "Chair" %>
+
+  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
+  <%= puts @roles %>
+  <%= puts '>>>>>>>>>>>>>>>>>>>>>>>>' %>
+  <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+
       <%= form_for(@paper) do |f| %>
           <% if @paper.accepted.equal?(false) %>
               <%= f.hidden_field :accepted, value: true %>
-              <%= f.submit 'Approve' %>
+              <%= f.submit 'Approve', :class => "btn btn-primary btn-sm active" %>
 
           <% end %>
       <% end %>
   <% end %>
-
+  <% end %>
 
 </p>
 
@@ -75,17 +84,19 @@
 </div>
 </p>
 <table class="table table-hover">
-  <th><td><strong>Score</strong></td><td><strong>Date</strong></td><td><strong>View</strong></td></th>
+  <th>
+    <td><strong>Score</strong></td>
+    <td><strong>Confidence</strong></td>
+    <td><strong>Date</strong></td>
+  </th>
   <% @paper.reviews.each do |review| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
-          <tr>
+          <tr class="clickable" data-link="<%= review_path(review) %>" >
             <td></td>
-            <td><%= review.score %></td>
-            <td><%= review.date %></td>
-            <td class="list_actions">
-              <%= link_to 'View Review', review_path(:id => review.id) %>
-            </td>
+            <td><%= review.score %> </td>
+            <td><%= review.confidence %></td>
+            <td><%= review.date %> </td>
           </tr>
 
 

@@ -1,5 +1,3 @@
-$("#current_tab").html("<%= escape_javascript(render partial: 'tracks/show_reviewed', locals: { track: @track} ) %>");
-
 jQuery(document).ready(function($) {
     $(".clickable").click(function() {
         console.log($(this).data("link"));

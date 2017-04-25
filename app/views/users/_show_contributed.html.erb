@@ -15,16 +15,16 @@
             <th>Conference</th>
             <th>Track</th>
             <th>Title</th>
-            <th>Link</th>
+
           </tr>
         </thead>
         <tbody>
           <% @user.papers.each do |paper| %>
-          <tr>
+          <tr class="clickable" data-link="<%= paper_path(paper) %>">
             <td><%= paper.track.conference.name %></td>
             <td><%= paper.track.name %></td>
             <td><%= paper.title %></td>
-            <td><%= link_to 'Go to', paper_path(paper) %></td>
+
           </tr>
           <% end %>
         </tbody>
