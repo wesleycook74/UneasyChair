@@ -26,7 +26,7 @@ class RebuttlesController < ApplicationController
   # POST /rebuttles.json
   def create
     @review = Review.find(params[:rID])
-    @rebuttle = Rebuttle.new(rebuttle_params)
+    @rebuttle = @review.rebuttle.build(rebuttle_params)
 
     respond_to do |format|
       if @rebuttle.save
