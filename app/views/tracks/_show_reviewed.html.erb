@@ -9,7 +9,8 @@
     <%if !@papers.empty?%>
     <h4>Reviewed:</h4>
     <table class="table table-hover">
-
+      <th><h4>Title</h4></th>
+      <th><h4>Author</h4></th>
       <% @papers.each do |paper| %>
         <% if paper.reviews.size > 2 && paper.accepted.equal?(false)  %>
           <tr class="clickable" data-link="<%= paper_path(paper)  %>" class="<%= cycle('list_line_odd', 'list_line_even') %>">

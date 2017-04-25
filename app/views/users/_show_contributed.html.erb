@@ -15,7 +15,7 @@
             <th>Conference</th>
             <th>Track</th>
             <th>Title</th>
-            <th>Link</th>
+
           </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
             <td><%= paper.track.conference.name %></td>
             <td><%= paper.track.name %></td>
             <td><%= paper.title %></td>
-            <td><%= link_to 'Go to', paper_path(paper) %></td>
+
           </tr>
           <% end %>
         </tbody>
