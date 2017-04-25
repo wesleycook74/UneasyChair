@@ -84,17 +84,19 @@
 </div>
 </p>
 <table class="table table-hover">
-  <th><td><strong>Score</strong></td><td><strong>Date</strong></td><td><strong>View</strong></td></th>
+  <th>
+    <td><strong>Score</strong></td>
+    <td><strong>Confidence</strong></td>
+    <td><strong>Date</strong></td>
+  </th>
   <% @paper.reviews.each do |review| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
-          <tr>
+          <tr class="clickable" data-link="<%= review_path(review) %>" >
             <td></td>
-            <td><%= review.score %></td>
-            <td><%= review.date %></td>
-            <td class="list_actions">
-              <%= link_to 'View Review', review_path(:id => review.id) %>
-            </td>
+            <td><%= review.score %> </td>
+            <td><%= review.confidence %></td>
+            <td><%= review.date %> </td>
           </tr>
 
 
