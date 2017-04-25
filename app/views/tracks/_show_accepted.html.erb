@@ -15,7 +15,9 @@
       <% @papers.each do |paper| %>
 
         <% if paper.accepted.equal?(true)%>
-          <tr class="clickable" data-link="<%= paper_path(paper) %>" class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+          <tr class="clickable" data-link="<%= paper_path(paper) %>" >
+
             <td class="list_description">
               <dl>
                 <dt><%= paper.title %></dt>
@@ -28,6 +30,7 @@
             </td>
 
           </tr>
+
         <% end %>
 
       <% end %>

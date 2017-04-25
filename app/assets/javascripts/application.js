@@ -12,10 +12,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .
 
-
+$(document).on('click','.clickable', function() {
+   // $(".clickable").click(function() {
+        console.log($(this).data("link"));
+        window.location = $(this).data("link");
+   // });
+});
