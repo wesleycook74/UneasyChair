@@ -89,9 +89,10 @@ const Users = React.createClass ({
               <SearchBar handleSearch={this.handleSearch} initialSearch={this.state.initialSearch}/>
           </div>
 				</div>
-        <table className="table " width="auto">
+        <table className="table table-hover" width="auto">
           <thead>
             <tr>
+              <th/> 
               <th>UserName</th>
               <th>Name</th>
               <th>Affiliation</th>
