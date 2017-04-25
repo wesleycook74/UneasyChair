@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170420042359) do
   end
 
   create_table "rebuttles", force: :cascade do |t|
-    t.integer  "review_ID"
+    t.integer  "review_id"
     t.string   "authorRebuttle"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

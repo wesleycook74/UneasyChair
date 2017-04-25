@@ -71,6 +71,6 @@ class RebuttlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rebuttle_params
-      params.require(:rebuttle).permit(:review_ID, :authorRebuttle)
+      params.require(:rebuttle).permit(:review_id, :authorRebuttle)
     end
 end
