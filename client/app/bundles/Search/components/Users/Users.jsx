@@ -15,6 +15,7 @@ const Users = React.createClass ({
   },  
 
   componentDidMount: function() {
+
   },
 
   handleAddToContacts: function(user){
@@ -24,28 +25,61 @@ const Users = React.createClass ({
     axios.defaults.headers.common['X-CSRF-Token'] =  ReactOnRails.authenticityToken();
 		axios.post('/connections', {contact_id: user.id}, )
 			.then(function (response) {
-				console.log(response);
 			})
 			.catch(function (error) {
 				console.log(error);
 				alert('Cannot sort events: ', error);
 		  });
+    // Sends a search request again to update data
+    axios.get('/users/search', {params: {query: this.props.initialSearch }})
+    .then(function (response) {
+      console.log(response)
+      self.setState({ users: response.data.users});
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert('Cannot sort events: ', error);
+    });
+  },
+
+  handleRemoveFromContacts: function(user){
+		var self = this;
+
+		axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.defaults.headers.common['X-CSRF-Token'] =  ReactOnRails.authenticityToken();
+		axios.delete('/connections/' + user.contact_id )
+			.then(function (response) {
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert('Cannot sort events: ', error);
+		  });
+    // Sends a search request again to update data
+    axios.get('/users/search', {params: {query: this.props.initialSearch }})
+    .then(function (response) {
+      console.log(response)
+      self.setState({ users: response.data.users });
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert('Cannot sort events: ', error);
+  });
 
   },
 
-
 	handleSearch: function(users, currentSearch) {
-		this.setState({ users: users });
+		this.setState({ users: users.users });
     this.props.handleSearch(currentSearch)
 	},
 
   render() {
     var users = [];
-
+    console.log(this.state.users)
     this.state.users.forEach(function(user) {
       users.push(<User user={user}  signed_in = {this.props.signed_in}
                                     key={'user'+ user.id}
-                                    handleAddToContacts={this.handleAddToContacts}/>);
+                                    handleAddToContacts={this.handleAddToContacts}
+                                    handleRemoveFromContacts={this.handleRemoveFromContacts}/>);
     }.bind(this));
     console.log(this.state.initialSearch)
     return (

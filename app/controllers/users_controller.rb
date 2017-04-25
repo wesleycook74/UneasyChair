@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     if user_signed_in?
       @users = @users.where.not(id: current_user.id)
     end
-    render json: @users
+    @users = @users.where.not(username: "admin")
   end
 
   def set_user_role
