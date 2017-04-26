@@ -15,6 +15,7 @@
             <th>Conference</th>
             <th>Track</th>
             <th>Title</th>
+            <th>Status</th>
 
           </tr>
         </thead>
@@ -24,6 +25,11 @@
             <td><%= paper.track.conference.name %></td>
             <td><%= paper.track.name %></td>
             <td><%= paper.title %></td>
+            <% if paper.accepted %>
+            <td><span  class="glyphicon glyphicon-ok accepted"></span></td>
+            <% else %>
+            <td><span  class="glyphicon glyphicon-minus pending"></span></td>
+            <% end %>
 
           </tr>
           <% end %>
