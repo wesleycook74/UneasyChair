@@ -9,7 +9,7 @@ gem 'faker'
 
 gem 'carrierwave', '~> 0.9' #gonna use this for file uploads
 gem 'fog'
-
+gem 'jquery-turbolinks'
 gem 'aws-sdk', '~> 2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,7 +37,7 @@ gem 'devise'
 # bootstrap to prettify things
 gem 'bootstrap-sass'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

@@ -5,7 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.0]
       t.date :date
       t.string :reviewer
       t.integer :score
-      t.string :rebuttle
+      t.string :review
       t.integer :confidence
 
       t.timestamps

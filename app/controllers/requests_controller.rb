@@ -3,11 +3,11 @@ class RequestsController < ApplicationController
 
   def new
     @track = params[:track_id]
-      
+
     if !@track.nil?
       @track = Track.find(params[:track_id])
       current_user_role = UserRole.where(track_id: @track.id, user_id: current_user.id).first
-      
+
       @request = Request.new
       @contacts = current_user.contacts
     else
@@ -36,24 +36,22 @@ class RequestsController < ApplicationController
           respond_to do |format|
             format.html { redirect_to "/tracks/"+@track_id, :flash => { :error => "User already exists in this track" } }
           end
-      else
+      end
+    end
         respond_to do |format|
           if @request.save
-            format.html { redirect_to "/tracks/"+@track_id, :flash => {success: 'Request was sent succesfully.'} }
+            format.html { redirect_to root_url, :flash => {success: 'Request was sent succesfully.'} }
             format.json { render :show, status: :created, location: @request }
           else
             format.html { render :new }
             format.json { render json: @request.errors, status: :unprocessable_entity }
           end
         end
-      end
-    end 
   end
 
 
   def destroy
     @request.destroy
-    flash[:notice] = "Removed contact."
     respond_to do |format|
         format.html { redirect_to root_url, notice: 'Request was successfully destroyed.' }
     end
