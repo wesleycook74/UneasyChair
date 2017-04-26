@@ -5,7 +5,7 @@
       <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
       <li role="presentation" class="active"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
-  <div class="container">
+  <div>
     <%if !@user_roles.empty? %>
     <H3 style="color:#428bca;">Users</H3>
     <table class="table table-hover">
