@@ -6,37 +6,31 @@
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
   <div class="container">
-  <%if !@papers.empty?%>
-    <h3 <span style="color:#428bca;">Accepted:</span></h3>
-    <table class="table table-hover">
-      <th><h5><strong>Title</strong></h5></th>
-      <th><h5><strong>Author</strong></h5></th>
-      <% @papers = @track.papers %>
-      <% @papers.each do |paper| %>
-
-        <% if paper.accepted.equal?(true)%>
-
-          <tr class="clickable" data-link="<%= paper_path(paper) %>" >
-
-            <td class="list_description">
-              <dl>
-                <dt><%= paper.title %></dt>
-              </dl>
-            </td>
-            <td class="list_description">
-              <dl>
-                <dt><%= paper.author %></dt>
-              </dl>
-            </td>
-
-          </tr>
-
+    <% if @track.papers.any? {|p| p.accepted == true} %>
+      <h3 <span style="color:#428bca;">Accepted:</span></h3>
+      <table class="table table-hover">
+        <th><h5><strong>Title</strong></h5></th>
+        <th><h5><strong>Author</strong></h5></th>
+        <% @papers = @track.papers %>
+        <% @papers.each do |paper| %>
+          <% if paper.accepted.equal?(true)%>
+            <tr class="clickable" data-link="<%= paper_path(paper) %>" >
+              <td class="list_description">
+                <dl>
+                  <dt><%= paper.title %></dt>
+                </dl>
+              </td>
+              <td class="list_description">
+                <dl>
+                  <dt><%= paper.author %></dt>
+                </dl>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-
-      <% end %>
-    </table>
+      </table>
     <%else%>
-        <H3> No Papers Have Been Accepted </H3>
+        <H3 style="color:#ff4d4d;"> No Papers Have Been Accepted </H3>
     <%end%>
   </div>
 </div>

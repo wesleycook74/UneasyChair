@@ -6,7 +6,7 @@
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
   <div class="container">
-    <%if !@papers.empty?%>
+    <%if @track.papers.any? {|p| p.reviews.size > 3 } %>
     <h3 style="color:#428bca;">Reviewed:</h3>
     <table class="table table-hover">
       <th><h4>Title</h4></th>
@@ -32,7 +32,7 @@
       <% end %>
     </table>
     <%else%>
-      <H3 style="color:red;"> No papers have been reviewed </H3>
+      <H3 style="color:#ff4d4d;"> No papers have been reviewed </H3>
     <%end%>
 
   </div>
