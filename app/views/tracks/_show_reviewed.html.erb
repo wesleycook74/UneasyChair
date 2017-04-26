@@ -6,13 +6,14 @@
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
   <div class="container">
-    <%if @track.papers.any? {|p| p.reviews.size > 3 } %>
+    <%if @track.papers.any? {|p| p.reviews.size > 2 } %>
     <h3 style="color:#428bca;">Reviewed:</h3>
     <table class="table table-hover">
       <th><h5><strong>Title</strong></h5></th>
       <th><h5><strong>Author</strong></h5></th>
+      <th><h5><strong>Status</strong></h5></th>
       <% @papers.each do |paper| %>
-        <% if paper.reviews.size > 2 && paper.accepted.equal?(false)  %>
+        <% if paper.reviews.size > 2%>
           <tr class="clickable" data-link="<%= paper_path(paper)  %>" class="<%= cycle('list_line_odd', 'list_line_even') %>">
             <td class="list_description">
               <dl>
@@ -24,8 +25,17 @@
                 <dt><%= paper.author %></dt>
               </dl>
             </td>
-            <td class="list_actions">
 
+            <td >
+              <%if paper.accepted %>
+                <dl>
+                  <dt>Accepted</dt>
+                </dl>
+              <%else%>
+                <dl>
+                  <dt>Not accepted</dt>
+                </dl
+              <%end%>
             </td>
           </tr>
         <% end %>

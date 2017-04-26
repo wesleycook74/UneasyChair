@@ -37,7 +37,7 @@
 
   <p>
     <strong>Track:</strong>
-    <%= @paper.track.name %>
+    <%= link_to @paper.track.name, track_path(@paper.track) %>
   </p>
 
   <p>
@@ -86,6 +86,9 @@
       <td><strong>Score</strong></td>
       <td><strong>Confidence</strong></td>
       <td><strong>Date</strong></td>
+      <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+        <td><strong>Reviewer Name</strong></td>
+      <%end%>
     </th>
     <% @paper.reviews.each do |review| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -95,6 +98,9 @@
               <td><%= review.score %> </td>
               <td><%= review.confidence %></td>
               <td><%= review.date %> </td>
+              <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+                <td><%= review.reviewer %> </td>
+              <%end%>
             </tr>
 
 
