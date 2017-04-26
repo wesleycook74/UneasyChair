@@ -18,7 +18,7 @@
 <H1 style="color:#428bca;">Tracks</H1>
 <table class="table table-hover">
     <% @tracks.each do |track| %>
-        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <tr class="clickable" data-link="/tracks/<%=track.id%>">
             <td class="list_description">
                 <dl>
                     <dt><%= track.name %></dt>
@@ -27,10 +27,9 @@
             </td>
             <td class="list_actions">
                 
-                <%= link_to 'View Track', track %>
                 <%if user_signed_in?%>
                     <%if current_user.id == @conference.user_id%>
-                        | <%= link_to "Remove Track", track, :method => :delete %>
+                        <%= link_to "Remove Track", track, :method => :delete, :class => "btn-sm btn-primary active", data: { confirm: 'Are you sure?' } %>
                     <%end%>
                 <%end%>
             </td>

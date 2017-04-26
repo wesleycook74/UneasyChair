@@ -19,9 +19,8 @@
           </thead>
           <tbody>
             <% @user.conferences.each do |conference| %>
-              <tr>
+              <tr class="clickable" data-link="/conferences/<%=conference.id%>">
                 <td><%= conference.name %></td>
-                <td><%= link_to 'Go to', conference_path(conference) %></td>
               </tr>
             <% end %>
           </tbody>

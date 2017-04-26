@@ -27,10 +27,10 @@
     </ul>
     <div class="container">
       <%if @track.papers.any? {|p| p.reviews.size < 3 } %>
-        <h3 style="color:#428bca;">Needs Reviewing:</h3>
+        <h3 style="color:#ff4d4d;">Needs Reviewing:</h3>
         <table class="table table-hover">
-          <th><h4>Title</h4></th>
-          <th><h4>Author</h4></th>
+        <th><h5><strong>Title</strong></h5></th>
+        <th><h5><strong>Author</strong></h5></th>
           <% @papers.each do |paper| %>
             <% if paper.reviews.size < 3 and paper.accepted.equal?(false) %>
             <tr class="clickable" data-link="<%= paper_path(paper) %>"  class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -51,7 +51,7 @@
 
         </table>
       <%else%>
-        <H3 style="color:#ff4d4d;"> No papers currently need reviewing</H3>
+        <H3 style="color:#428bca;"> No papers currently need reviewing</H3>
       <%end%>
     </div>
   </div>
