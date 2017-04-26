@@ -51,8 +51,17 @@ class RequestsController < ApplicationController
           end
         end
       end
+    else 
+      respond_to do |format|
+        if @request.save
+          format.html { redirect_to root_url, :flash => {success: 'Request was sent succesfully.'} }
+          format.json { render :show, status: :created, location: @request }
+        else
+          format.html { render :new }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+      end
     end
-
   end
 
 
