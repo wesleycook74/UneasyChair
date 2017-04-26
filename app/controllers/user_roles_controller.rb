@@ -1,5 +1,6 @@
 class UserRolesController < ApplicationController
   before_action :set_user_role, only: [:edit, :update, :destroy]
+  include NotificationsHelper
 
   # GET /user_roles/new
   def new
@@ -32,6 +33,8 @@ class UserRolesController < ApplicationController
         if @user_role.save
           format.html { redirect_to @track, :flash => { :success => "Joined Track Successfully" } }
           format.json { render :show, status: :created, location: @user_role }
+          create_notification(@request.user, "#{@request.receiver.username} accepted your request", "
+          #{@request.receiver.name} joined #{@track.name} as a #{@user_role.role}")
           @request.destroy
         else
           format.html { render :new }

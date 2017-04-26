@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
+  include NotificationsHelper
 
   def new
     @track = params[:track_id]
@@ -51,7 +52,7 @@ class RequestsController < ApplicationController
           end
         end
       end
-    else 
+    else
       respond_to do |format|
         if @request.save
           format.html { redirect_to root_url, :flash => {success: 'Request was sent succesfully.'} }
@@ -76,6 +77,7 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @user = User.find(@request.user_id)
     @user.update_attribute :chairable, true
+    create_notification(@user, 'Chair access granted', "Admin has approved your request for chair access")
     @request.destroy
 
     respond_to do |format|
