@@ -9,16 +9,20 @@
 <body>
 <header>
   <%= render 'layouts/navigation' %>
+
 </header>
 <main role="main">
+  <h2><%= @conference.name %> : <%= @track.name %> Track </h2>
+
+  <% if @track.papers.any? {|p| p.accepted == true} %>
 <div class="container">
   <h3>Papers</h3>
   <h4>Approved:</h4>
   <div class="container">
     <table class="table table-hover">
+
       <% @papers = @track.papers %>
       <% @papers.each do |paper| %>
-          <% if paper.accepted.equal?(true) %>
 
               <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
                 <td class="list_description">
@@ -36,11 +40,17 @@
                 </td>
               </tr>
           <% end %>
-      <% end %>
+
+<% %>
     </table>
+  </div>
+  <% end %>
+
   </div>
     <div class="container">
       <%= link_to 'Submit Paper', new_paper_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
-    </div></main>
+    </div>
+</div>
+</main>
   </body>
 </div>

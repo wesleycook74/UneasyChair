@@ -9,4 +9,5 @@ class Track < ApplicationRecord
 	def add_user(user, role)
 		self.user_roles.build(user_id: user, role: role)
 	end
+
 end

@@ -64,6 +64,9 @@ class TracksController < ApplicationController
      if @current_user_role.nil?
        render :partial => 'authorSubmitToTrack.html.erb'
      end
+
+
+
   end
 
   # GET /tracks/new
@@ -130,6 +133,8 @@ class TracksController < ApplicationController
 
     end
   end
+
+
 
   private
 
