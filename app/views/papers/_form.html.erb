@@ -13,15 +13,18 @@
     <% @user = current_user %>
   <div class= "field">
     <%= f.label :title %>
+    <br/>
     <%= f.text_field :title %>
 
   </div>
     <div class="field">
       <%= f.label :abstract %>
+      <br/>
       <%= f.text_area :abstract, :cols => "50", :rows => "10" %>
     </div>
   <div class="field">
     <%= f.label :attachment %>
+    <br/>
     <%= f.file_field :attachment %>
   </div>
 
