@@ -7,7 +7,7 @@
   </ul>
 	<div class="container">
 		<%if @papers.size >= 1%>
-			<h3>Needs Reviewing:</h3>
+			<h3 style="color:#428bca;">Needs Reviewing:</h3>
 			<table class="table table-hover">
         <th><h4>Title</h4></th>
         <th><h4>Author</h4></th>
@@ -33,7 +33,7 @@
 
 			</table>
 		<%else%>
-			<H3> No papers currently need reviewing</H3>
+			<H3 style="color:red;"> No papers currently need reviewing</H3>
 		<%end%>
 	</div>
 </div>

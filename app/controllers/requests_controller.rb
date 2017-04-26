@@ -36,17 +36,23 @@ class RequestsController < ApplicationController
           respond_to do |format|
             format.html { redirect_to "/tracks/"+@track_id, :flash => { :error => "User already exists in this track" } }
           end
-      end
-    end
+      elsif Paper.exists?(track_id: @track_id, user_id: @receiver_id)
+        respond_to do |format|
+            format.html { redirect_to "/tracks/"+@track_id, :flash => { :error => "User Has submitted a paper to this track" } }
+        end
+      else
         respond_to do |format|
           if @request.save
-            format.html { redirect_to root_url, :flash => {success: 'Request was sent succesfully.'} }
+            format.html { redirect_to "/tracks/"+@track_id, :flash => {success: 'Request was sent succesfully.'} }
             format.json { render :show, status: :created, location: @request }
           else
             format.html { render :new }
             format.json { render json: @request.errors, status: :unprocessable_entity }
           end
         end
+      end
+    end
+
   end
 
 
