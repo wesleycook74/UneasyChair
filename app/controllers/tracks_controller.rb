@@ -48,6 +48,7 @@ class TracksController < ApplicationController
   def show_users
     @track = Track.find(params[:track_id])
     @user_roles = @track.user_roles
+    set_user_role
     respond_to do |format|
       format.html
       format.js {render layout: false} # Add this line to you respond_to block

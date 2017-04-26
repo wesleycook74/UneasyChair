@@ -1,1 +1,8 @@
 $("#current_tab").html("<%= escape_javascript(render partial: 'users/show_contacts', locals: { user: @user } ) %>");
+
+jQuery(document).ready(function($) {
+    $(".clickable").click(function() {
+		console.log($(this).data("link"));
+        window.location = $(this).data("link");
+    });
+});

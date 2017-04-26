@@ -1,9 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <% @user = current_user  %>
 <% @paper = @review.paper  %>
-
-
 
 <p>
   <strong>Score:</strong>
@@ -36,10 +32,10 @@
   <strong>Review:</strong>
   <%= @review.review %>
 </p>
-<% if !@review.rebuttle.equal?(nil) %>
-  <% @review.rebuttle.each do |rebuttle| %>
+<% if !@review.review.equal?(nil) %>
+  <% for rebuttle in @review.rebuttle do%>
     <p>
-      <strong>Author's Rebuttal:</strong>
+      <strong>Author's rebuttle:</strong>
         <%= rebuttle.authorRebuttle %>
     </p>
     <% end %>
@@ -48,7 +44,7 @@
 
 <% if @paper.user.id == @user.id %>
 
-<%= link_to 'Rubute', new_rebuttle_path(:rID => @review.id), :action => "Create",
+<%= link_to 'Rebute', new_rebuttle_path(:rID => @review.id), :action => "Create",
             :class => "btn btn-primary btn-sm active" %>
 <% end %>
 

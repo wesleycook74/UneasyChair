@@ -12,6 +12,8 @@
                 <div class="form-group">
                   <div><%= f.text_field :username, class:'form-control', placeholder: 'Username' %></div>
                   <br>
+                  <div><%= f.text_field :name, class:'form-control',placeholder: 'Name' %></div>
+                  <br>
                   <div><%= f.email_field :email, class:'form-control', placeholder: 'Email' %></div>
                   <br>
                   <div><%= f.password_field :password, class:'form-control', placeholder: 'Password' %></div>
@@ -47,10 +49,10 @@
     <div class="col-sm-4">
       <h2> Simple Hierarchy </h2>
       <ul>
-        <li><h3>Chair<h3></li>
-        <li><h3>Track Chair<h3></li>
-        <li><h3>Track Member<h3></li>
-        <li><h3>Authors<h3></li>
+        <li><h3>Chair</h3></li>
+        <li><h3>Track Chair</h3></li>
+        <li><h3>Track Member</h3></li>
+        <li><h3>Authors</h3></li>
       </ul>
     </div>
   </div>

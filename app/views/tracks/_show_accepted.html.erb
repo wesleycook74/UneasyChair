@@ -7,13 +7,17 @@
   </ul>
   <div class="container">
   <%if !@papers.empty?%>
-    <h3>Accepted:</h3>
+    <h3 <span style="color:#428bca;">Accepted:</span></h3>
     <table class="table table-hover">
+      <th><h5><strong>Title</strong></h5></th>
+      <th><h5><strong>Author</strong></h5></th>
       <% @papers = @track.papers %>
       <% @papers.each do |paper| %>
 
         <% if paper.accepted.equal?(true)%>
-          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+          <tr class="clickable" data-link="<%= paper_path(paper) %>" >
+
             <td class="list_description">
               <dl>
                 <dt><%= paper.title %></dt>
@@ -24,16 +28,15 @@
                 <dt><%= paper.author %></dt>
               </dl>
             </td>
-            <td class="list_actions">
-              <%= link_to 'Show', paper %> |
-            </td>
+
           </tr>
+
         <% end %>
 
       <% end %>
     </table>
     <%else%>
-      <H3> No Papers Have Been Accepted
+        <H3> No Papers Have Been Accepted </H3>
     <%end%>
   </div>
 </div>

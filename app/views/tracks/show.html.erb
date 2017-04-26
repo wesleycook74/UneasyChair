@@ -2,11 +2,12 @@
 
 <div class="container">
   <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
-          <h1><%= @conference.name %></h1>
+              <h1 style="text-align:center; color:#428bca; "><%= @conference.acronym %></h1> 
+              <h3 style="text-align:center; color:#3bb300">Chair: <%= @conference.user.name %></h3>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
@@ -25,13 +26,14 @@
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
     </ul>
     <div class="container">
-      <%if !@papers.empty?%>
-        <h3>Needs Reviewing:</h3>
+      <%if @papers.size >= 1%>
+        <h3 style="color:#428bca;">Needs Reviewing:</h3>
         <table class="table table-hover">
-
+          <th><h4>Title</h4></th>
+          <th><h4>Author</h4></th>
           <% @papers.each do |paper| %>
             <% if paper.reviews.size < 3 and paper.accepted.equal?(false) %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <tr class="clickable" data-link="<%= paper_path(paper) %>"  class="<%= cycle('list_line_odd', 'list_line_even') %>">
               <td class="list_description">
                 <dl>
                   <dt><%= paper.title %></dt>
@@ -42,16 +44,14 @@
                 <dt><%= paper.author %></dt>
                 </dl>
               </td>
-              <td class="list_actions">
-                <%= link_to 'Show', paper %>
-              </td>
+
             </tr>
             <% end %>
           <% end %>
 
         </table>
       <%else%>
-        <H3> No papers currently need reviewing</H3>
+        <H3 style="color:red;"> No papers currently need reviewing</H3>
       <%end%>
     </div>
   </div>
@@ -65,4 +65,3 @@
     <%end%>
   </div>
 </div>
-

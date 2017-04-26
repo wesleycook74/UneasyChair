@@ -26,7 +26,7 @@
       <li role="presentation"><%= link_to 'Contributed', show_contributed_path, :remote => true %></li>
       <li role="presentation"><%= link_to 'Contacts', show_contacts_path, :remote => true %></li>
     </ul>
-    <div class="container">
+    <div>
     <%if !@user_roles.empty?%>
       <H3>Conferences You Joined </H3>
       <table class="table table-hover">
@@ -47,11 +47,13 @@
           <% end %>
         </tbody>
       </table>
+    <%else%>
+      <H3> You haven't joined any Conferences </
     <%end%>
     </div>
   </div>
   <% else %>
-  <h1> hello <%= current_user.username %> </h1>
+  <%= render partial: 'show_other' %>
   <% end %>
 
 </div>

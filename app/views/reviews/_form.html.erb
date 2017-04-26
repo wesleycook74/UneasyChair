@@ -11,16 +11,22 @@
     </div>
   <% end %>
 
+<% @user = current_user %>
 
+  <div>
 
+    <strong>
+      Name:
+    </strong>
+    <%= @user.name %>
+  </div>
   <div class="field">
     <%= f.label :date %>
     <%= f.date_select :date %>
   </div>
 
   <div class="field">
-    <%= f.label :reviewer %>
-    <%= f.text_field :reviewer %>
+    <%= f.hidden_field :reviewer, value: @user.name %>
   </div>
 
   <div class="field">
@@ -29,8 +35,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :rebuttal %>
-    <%= f.text_area :rebuttal, :cols => "50", :rows => "10" %>
+    <%= f.label "comment" %>
+    <%= f.text_area :review, :cols => "50", :rows => "10" %>
   </div>
 
   <div class="field">

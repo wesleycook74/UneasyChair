@@ -2,4 +2,4 @@
 
 <%= render 'form', rebuttle: @rebuttle %>
 
-<%= link_to 'Back', rebuttles_path %>
+<%= link_to 'Back', review_path(@review.id),:class => "btn btn-primary btn-md active"  %>

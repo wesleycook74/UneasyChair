@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+    <% @user = current_user %>
   <div class= "field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -25,8 +26,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :author %>
-    <%= f.text_field :author %>
+    <%= f.hidden_field :author, value: @user.name %>
+    <strong>
+      Author:
+    </strong>
+    <%= @user.name %>
   </div>
 
 
