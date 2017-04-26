@@ -1,4 +1,4 @@
-$("#current_tab").html("<%= escape_javascript(render partial: 'tracks/show_needs_reviewing', locals: { track: @track } ) %>");
+
 
 $(document).on('page:load', function() {
     $(".clickable").click(function() {

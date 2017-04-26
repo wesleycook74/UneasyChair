@@ -1,96 +1,114 @@
-<%=session[:user_role]%>
-<p id="notice"><%= notice %></p>
-<h4 class="section-title">Paper</h4>
-<p>
-  <strong>Title:</strong>
-  <%= @paper.title %>
-</p>
-<p>
-  <strong>Overall Score:</strong>
-
-  <% @total = @paper.reviews.sum(:score).to_f / @paper.reviews.count(:score)%>
-  <%=  number_with_precision(@total, :precision => 2)%>
-
-</p>
-<p>
-  <strong>Abstract:</strong>
-  <%= @paper.abstract %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @paper.author %>
-</p>
-
-<p>
-  <strong>Track:</strong>
-  <%= @paper.track.name %>
-</p>
-
-<p>
-  <strong>Accepted:</strong>
-  <%= @paper.accepted %>
-</p>
-<p>
-  <%= link_to "Download A Copy", @paper.attachment_url %>
-</p>
-
-<p>
-  <% @user = current_user %>
-  <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
-      <%= form_for(@paper) do |f| %>
-          <% if @paper.accepted.equal?(false) %>
-              <%= f.hidden_field :accepted, value: true %>
-              <%= f.submit 'Approve', :class => "btn btn-primary btn-sm active" %>
-
-          <% end %>
-      <% end %>
-  <% end %>
-
-
-</p>
-
-<p>
-<h4>Reviews: </h4>
-<div>
-  <table>
-    <tr>
-      <td>
-        <%  %>
-        <%  %>
-        <% if @paper.user.id != @user.id %>
-        <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
-            :action => "Create", :class => "btn btn-primary btn-sm active"%>
-        <% end %>
-      </td>
-      <td>
-        <% if @paper.reviews.size < 3 %>
-            <p>(This paper requires more reviews.)</p>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+<% @user = current_user %>
+<div class="container">
+<div class="container">
+  <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+              <h1 style="text-align:center; color:#428bca; "><%= @conference.acronym %></h1>
+              <h3 style="text-align:center; color:#3bb300">Chair: <%= @conference.user.name %></h3>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 </div>
-</p>
-<table class="table table-hover">
-  <th><td><strong>Score</strong></td><td><strong>Date</strong></td><td><strong>View</strong></td></th>
-  <% @paper.reviews.each do |review| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-
-          <tr>
-            <td></td>
-            <td><%= review.score %></td>
-            <td><%= review.date %></td>
-            <td class="list_actions">
-              <%= link_to 'View Review', review_path(:id => review.id) %>
-            </td>
-          </tr>
 
 
-      </tr>
+<div class="col-md-15">
+  <h3 class="section-title" style="color:#428bca;"> <%= @paper.title %> </h3>
+  <p>
+    <strong>Overall Score:</strong>
+
+    <%if !@paper.reviews.empty?%>
+      <% @total = @paper.reviews.sum(:score).to_f / @paper.reviews.count(:score)%>
+      <%=  number_with_precision(@total, :precision => 2)%>
+    <%else%>
+      Not Reviewed
+    <%end%>
+  </p>
+
+  <p>
+    <strong>Abstract:</strong>
+    <%= @paper.abstract %>
+  </p>
+
+  <p>
+    <strong>Author:</strong>
+    <%= @paper.author %>
+  </p>
+
+  <p>
+    <strong>Track:</strong>
+    <%= link_to @paper.track.name, track_path(@paper.track), :class => "btn-xs btn-default active" %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%if @paper.accepted%>
+     <span style="color:green">Accepted</span>
+    <%else%>
+       <span style="color:red">Pending/Not Accepted</span>
+    <%end%>
+  </p>
+
+  <div>
+    <%= link_to "Download", @paper.attachment_url, :class => "btn btn-primary btn-sm active", :style => "margin-bottom:5px"%>
+
+    <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+    <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
+        :action => "Create", :class => "btn btn-primary btn-sm active", :style => "margin-bottom:5px"%>
+    <% end %>
+
+
+    <% if @paper.user.id == @user.id %>
+    <%= link_to 'Edit', edit_paper_path(@paper), :class => "btn btn-primary btn-sm active", :style => "margin-bottom:5px"%>
+    <% end %>
+
+    <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+      <%= form_for(@paper) do |f| %>
+        <% if @paper.accepted.equal?(false) %>
+          <%= f.hidden_field :accepted, value: true %>
+          <%= f.submit 'Approve', :class => "btn btn-primary btn-sm active", data: { confirm: 'Are you sure?' } %>
+        <%else%>
+          <%= f.hidden_field :accepted, value: false %>
+          <%= f.submit 'Un-approve', :class => "btn btn-primary btn-sm active", data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <p>
+  <h3 style="color:#428bca;">Reviews: </h3>
+  </p>
+  <%if !@paper.reviews.empty?%>
+  <% if @paper.reviews.size < 3 && @paper.reviews.size > 1%>
+      <p>(This paper requires more reviews.)</p>
   <% end %>
-</table>
-<% if @paper.user.id == @user.id %>
-<%= link_to 'Edit', edit_paper_path(@paper), :class => "btn btn-primary btn-sm active"  %>
-<% end %>
-<%= link_to 'Back', track_path(@paper.track), :class => "btn btn-primary btn-sm active" %>
+  <table class="table table-hover">
+    <th>
+      <td><strong>Score</strong></td>
+      <td><strong>Confidence</strong></td>
+      <td><strong>Date</strong></td>
+      <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+        <td><strong>Reviewer Name</strong></td>
+      <%end%>
+    </th>
+    <% @paper.reviews.each do |review| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+            <tr class="clickable" data-link="<%= review_path(review) %>" >
+              <td></td>
+              <td><%= review.score %> </td>
+              <td><%= review.confidence %></td>
+              <td><%= review.date %> </td>
+              <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+                <td><%= review.reviewer %> </td>
+              <%end%>
+            </tr>
+
+
+        </tr>
+    <% end %>
+  </table>
+  <%else%>
+    <H3> This paper doesn't have any reviews yet </H3>
+  <%end%>
+
+</div>

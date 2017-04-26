@@ -20,13 +20,14 @@ class RebuttlesController < ApplicationController
 
   # GET /rebuttles/1/edit
   def edit
+    @review = @rebuttle.review
   end
 
   # POST /rebuttles
   # POST /rebuttles.json
   def create
     @review = Review.find(params[:rID])
-    @rebuttle = Rebuttle.new(rebuttle_params)
+    @rebuttle = @review.rebuttle.build(rebuttle_params)
 
     respond_to do |format|
       if @rebuttle.save
@@ -67,6 +68,7 @@ class RebuttlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rebuttle
       @rebuttle = Rebuttle.find(params[:id])
+      @review = @rebuttle.review
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

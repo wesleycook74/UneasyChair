@@ -12,7 +12,7 @@ class PapersController < ApplicationController
   # GET /papers/1.json
   def show
     @track = Track.find(@paper.track_id)
-
+    @conference = @track.conference
     @chair_id = @track.conference.user_id
   end
 

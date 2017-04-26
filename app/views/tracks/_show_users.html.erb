@@ -5,9 +5,9 @@
       <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
       <li role="presentation" class="active"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
   </ul>
-  <div class="container">
+  <div>
     <%if !@user_roles.empty? %>
-    <H3>Users</H3>
+    <H3 style="color:#428bca;">Users</H3>
     <table class="table table-hover">
       <% @user_roles.each do |user_role| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -35,7 +35,7 @@
       <% end %>
     </table>
     <%else%>
-      <H3> There are no Users in this track </H3>
+      <H3 style="color:#ff4d4d;"> There are no Users in this track </H3>
     <%end%>
   </div>
 </div>

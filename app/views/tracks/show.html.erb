@@ -2,17 +2,18 @@
 
 <div class="container">
   <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
-          <h1><%= @conference.name %></h1>
+              <h1 style="text-align:center; color:#428bca; "><%= @conference.acronym %></h1> 
+              <h3 style="text-align:center; color:#3bb300">Chair: <%= @conference.user.name %></h3>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
 <div class="col-md-9">
-  <div class="container">
-    <h2> <%= @track.name %> Track </h2>
+  <div >
+    <h2 style="color:#428bca;"> <%= @track.name %> Track </h2>
   </div>
 </div>
 
@@ -24,14 +25,15 @@
       <li role="presentation"><%= link_to 'Accepted', show_accepted_path(:track_id => @track.id), :remote => true %></li>
       <li role="presentation"><%= link_to 'Users', show_users_path(:track_id => @track.id), :remote => true %></li>
     </ul>
-    <div class="container">
-      <%if @papers.size >= 1%>
-        <h3>Needs Reviewing:</h3>
+    <div >
+      <%if @track.papers.any? {|p| p.reviews.size < 3 } %>
+        <h3 style="color:#ff4d4d;">Needs Reviewing:</h3>
         <table class="table table-hover">
-
+        <th><h5><strong>Title</strong></h5></th>
+        <th><h5><strong>Author</strong></h5></th>
           <% @papers.each do |paper| %>
             <% if paper.reviews.size < 3 and paper.accepted.equal?(false) %>
-            <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <tr class="clickable" data-link="<%= paper_path(paper) %>"  class="<%= cycle('list_line_odd', 'list_line_even') %>">
               <td class="list_description">
                 <dl>
                   <dt><%= paper.title %></dt>
@@ -42,21 +44,19 @@
                 <dt><%= paper.author %></dt>
                 </dl>
               </td>
-              <td class="list_actions">
-                <%= link_to 'Show', paper %>
-              </td>
+
             </tr>
             <% end %>
           <% end %>
 
         </table>
       <%else%>
-        <H3> No papers currently need reviewing</H3>
+        <H3 style="color:#428bca;"> No papers currently need reviewing</H3>
       <%end%>
     </div>
   </div>
   </br>
-  <div class="container">
+  <div class="col-md-9">
     <%if @current_user_role == "Chair" || @current_user_role == "Track Chair" %>
       <%= link_to 'Invite User', new_request_path(track_id: @track), :class => "btn btn-primary btn-md active" %>
     <%end%>
