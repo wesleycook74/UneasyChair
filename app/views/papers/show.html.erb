@@ -10,11 +10,7 @@
 </div>
 
 <div class="container">
-  <h4 class="section-title">Paper</h4>
-  <p>
-    <strong>Title:</strong>
-    <%= @paper.title %>
-  </p>
+  <h3 class="section-title"> <%= @paper.title %> </h3>
   <p>
     <strong>Overall Score:</strong>
 
@@ -44,9 +40,9 @@
   <p>
     <strong>Status:</strong>
     <%if @paper.accepted%>
-      Accepted
+     <span style="color:green">Accepted</span>
     <%else%>
-      Not Accepted
+       <span style="color:red">Not Accepted</span>
     <%end%>
   </p>
 
@@ -68,7 +64,7 @@
 
   </p>
   <p>
-  <h4>Reviews: </h4>
+  <h3>Reviews: </h3>
   <div>
     <table>
       <tr>

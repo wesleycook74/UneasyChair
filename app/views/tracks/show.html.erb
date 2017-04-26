@@ -1,13 +1,14 @@
 <% @user = current_user %>
 
+
 <div class="container">
   <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
-          <h1><%= @conference.acronym %></h1>
-          <h3>Chair: <%= @conference.user.name %></h3>
+              <h1 style="text-align:center; color:#428bca; "><%= @conference.acronym %></h1> 
+              <h3 style="text-align:center;">Chair: <%= @conference.user.name %></h3>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
