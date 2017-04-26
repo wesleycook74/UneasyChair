@@ -25,11 +25,11 @@
           </td>
           <td class="list_actions">
             <%if @current_user_role == "Chair" %>
-              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %> <!-- Conference Chair can remove anyone -->
-            <%elsif @current_user_role == "Track Chair" && user_role.role != "Track Chair"%>               <!-- Track Chair can remove members -->
-              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm active" %> <!-- Conference Chair can remove anyone -->
+            <%elsif @current_user_role == "Track Chair" && user_role.role != "Track Chair"%>              <!-- Track Chair can remove members -->
+              <%= link_to 'Remove User', user_role, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm active"  %>
             <%elsif user_role.user == current_user%>                                                          <!-- Members can only remove themselves -->
-              <%= link_to 'Leave Track', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Remove User', user_role,  method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-danger btn-sm active" %>
             <%end%>
           </td>
         </tr>
