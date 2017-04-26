@@ -52,7 +52,7 @@
   <div>
     <%= link_to "Download", @paper.attachment_url, :class => "btn btn-primary btn-sm active", :style => "margin-bottom:5px"%>
 
-    <% if @current_user_role == "Chair" || @current_user_role == "Track Chair"%>
+    <% if @current_user_role == "Chair" || @current_user_role == "Track Chair" || @current_user_role == "Track Member" %>
     <%= link_to 'Create Review', new_review_path(:paper_id => @paper.id),
         :action => "Create", :class => "btn btn-primary btn-sm active", :style => "margin-bottom:5px"%>
     <% end %>
