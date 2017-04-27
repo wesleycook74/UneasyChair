@@ -38,9 +38,10 @@
 <% end %>
 
 <% if @paper.user.id == @user.id %>
-
-<%= link_to 'Rebute', new_rebuttle_path(:rID => @review.id), :action => "Create",
+  <% if @review.rebuttle.empty? %>
+    <%= link_to 'Rebute', new_rebuttle_path(:rID => @review.id), :action => "Create",
             :class => "btn btn-primary btn-sm active" %>
+  <%end%>
 <% end %>
 
 <% if @review.user_id == @user.id %>
