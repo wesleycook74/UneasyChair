@@ -21,8 +21,8 @@
         </div>
         <div class="col-md-3"></div>
     </div>
+    <H2 style="color:#428bca;"> <%=@track.name%>
 </div>
-
 <% if @track.papers.any? {|p| p.accepted == true} %>
   <div class="container">
     <h3 style="color:#428bca;">Published Papers</h3>
